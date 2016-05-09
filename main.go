@@ -233,7 +233,7 @@ func parseOutput(r io.Reader) (*Info, error) {
 func parseFloat(val string) float64 {
 	v, err := strconv.ParseFloat(val, 64)
 	if err != nil {
-		log.Errorf("Failed to parse %s: %v", val, err)
+		log.Errorf("failed to parse %s: %v", val, err)
 		v = math.NaN()
 	}
 	return v
@@ -255,6 +255,6 @@ func main() {
 
 	http.Handle(*metricsPath, prometheus.Handler())
 
-	log.Infof("Starting passenger_exporter_nginx v%s at %s", Version, *listenAddress)
+	log.Infof("starting passenger_exporter_nginx v%s at %s", Version, *listenAddress)
 	log.Fatal(http.ListenAndServe(*listenAddress, nil))
 }
