@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
@@ -27,6 +28,7 @@ var (
 type Exporter struct {
 	// binary file path for querying passenger state.
 	binPath string
+	args    []string
 
 	// Passenger metrics.
 	up                  *prometheus.Desc
@@ -53,7 +55,10 @@ type Exporter struct {
 	// per-process swap metrics.
 }
 
-func NewExporter(binPath string) (*Exporter, error) {
+func NewExporter(cmd string) (*Exporter, error) {
+	cmdComponents := strings.Split(cmd, " ")
+	binPath := cmdComponents[0]
+
 	_, err := os.Stat(binPath)
 	if err != nil {
 		return nil, err
@@ -61,6 +66,7 @@ func NewExporter(binPath string) (*Exporter, error) {
 
 	return &Exporter{
 		binPath: binPath,
+		args:    cmdComponents[1:],
 		up: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "up"),
 			"Could passenger status be queried.",
@@ -187,7 +193,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 func (e *Exporter) status() (*Info, error) {
 	var (
 		out bytes.Buffer
-		cmd = exec.Command("sudo", e.binPath, "--show=xml")
+		cmd = exec.Command(e.binPath, e.args...)
 	)
 	cmd.Stdout = &out
 
@@ -235,13 +241,13 @@ func parseFloat(val string) float64 {
 
 func main() {
 	var (
-		binFile       = flag.String("passenger.bin-file", "", "Passenger binary file for querying passenger status.")
+		cmd           = flag.String("passenger.command", "", "Passenger command for querying passenger status.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
 	)
 	flag.Parse()
 
-	exporter, err := NewExporter(*binFile)
+	exporter, err := NewExporter(*cmd)
 	if err != nil {
 		log.Fatalf("failed to create passenger_exporter: %v", err)
 	}
