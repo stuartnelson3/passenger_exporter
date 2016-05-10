@@ -7,7 +7,6 @@ import (
 	"io"
 	"math"
 	"net/http"
-	"os"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -27,8 +26,8 @@ var (
 // Exporter collects metrics from a passenger-nginx integration.
 type Exporter struct {
 	// binary file path for querying passenger state.
-	binPath string
-	args    []string
+	cmd  string
+	args []string
 
 	// Passenger metrics.
 	up                  *prometheus.Desc
@@ -57,16 +56,10 @@ type Exporter struct {
 
 func NewExporter(cmd string) (*Exporter, error) {
 	cmdComponents := strings.Split(cmd, " ")
-	binPath := cmdComponents[0]
-
-	_, err := os.Stat(binPath)
-	if err != nil {
-		return nil, err
-	}
 
 	return &Exporter{
-		binPath: binPath,
-		args:    cmdComponents[1:],
+		cmd:  cmdComponents[0],
+		args: cmdComponents[1:],
 		up: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "up"),
 			"Could passenger status be queried.",
@@ -193,7 +186,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 func (e *Exporter) status() (*Info, error) {
 	var (
 		out bytes.Buffer
-		cmd = exec.Command(e.binPath, e.args...)
+		cmd = exec.Command(e.cmd, e.args...)
 	)
 	cmd.Stdout = &out
 
