@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
@@ -166,12 +167,15 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 	for _, sg := range info.SuperGroups {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
-		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Group.ProcessesSpawning, sg.Name)
+		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
 
 		for _, proc := range sg.Group.Processes {
 			ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, proc.PID)
 			ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, proc.PID)
-			ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, parseFloat(proc.Uptime), sg.Name, proc.PID)
+
+			if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
+				ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime), sg.Name, proc.PID)
+			}
 
 			// Is this one really necessary?
 			ch <- prometheus.MustNewConstMetric(
@@ -230,6 +234,11 @@ func parseFloat(val string) float64 {
 		v = math.NaN()
 	}
 	return v
+}
+
+// parsePassengerInterval formats and parses the default Passenger time output.
+func parsePassengerInterval(val string) (time.Duration, error) {
+	return time.ParseDuration(strings.Replace(val, " ", "", -1))
 }
 
 func main() {

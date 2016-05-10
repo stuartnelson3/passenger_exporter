@@ -1,13 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestParsing(t *testing.T) {
-	tests := map[string]func() *Info{
-		"newExporter": func() *Info {
+	tests := map[string]func(t *testing.T) *Info{
+		"newExporter": func(t *testing.T) *Info {
 			e := NewExporter("cat ./passenger_xml_output.xml")
 			info, err := e.status()
 			if err != nil {
@@ -15,7 +18,7 @@ func TestParsing(t *testing.T) {
 			}
 			return info
 		},
-		"parseOutput": func() *Info {
+		"parseOutput": func(t *testing.T) *Info {
 			f, err := os.Open("passenger_xml_output.xml")
 			if err != nil {
 				t.Fatalf("open xml file failed: %v", err)
@@ -30,7 +33,7 @@ func TestParsing(t *testing.T) {
 	}
 
 	for name, test := range tests {
-		info := test()
+		info := test(t)
 
 		if len(info.SuperGroups) == 0 {
 			t.Fatalf("%v: no supergroups in output", name)
@@ -47,7 +50,20 @@ func TestParsing(t *testing.T) {
 				if want, got := "2254", proc.ProcessGroupID; want != got {
 					t.Fatalf("%s: incorrect process_group_id: wanted %s, got %s", name, want, got)
 				}
+
+				uptime := fmt.Sprintf("%v", testParsePassengerDuration(t, proc.Uptime))
+				if want, got := strings.Replace(proc.Uptime, " ", "", -1), uptime; want != got {
+					t.Fatalf("%s: incorrect process_group_id: wanted %s, got %s", name, want, got)
+				}
 			}
 		}
 	}
+}
+
+func testParsePassengerDuration(t *testing.T, uptime string) time.Duration {
+	parsed, err := parsePassengerInterval(uptime)
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	return parsed
 }
