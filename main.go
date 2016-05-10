@@ -142,7 +142,7 @@ func NewExporter(cmd string) *Exporter {
 	}
 }
 
-// Collect fetches the statistics from the configured memcached server, and
+// Collect fetches the statistics from the configured passenger frontend, and
 // delivers them as Prometheus metrics. It implements prometheus.Collector.
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	info, err := e.status()
