@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -13,6 +14,13 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 )
+
+var golden bool
+
+func init() {
+	flag.BoolVar(&golden, "golden", false, "Write test results to fixture files.")
+	flag.Parse()
+}
 
 func TestParsing(t *testing.T) {
 	tests := map[string]func(t *testing.T) *Info{
@@ -82,7 +90,14 @@ func TestScrape(t *testing.T) {
 		t.Fatalf("failed to read response body: %v", err)
 	}
 
-	fixture, err := ioutil.ReadFile("./testdata/scrape_output.txt")
+	scrapeFixturePath := "./testdata/scrape_output.txt"
+	if golden {
+		idx := bytes.Index(body, []byte("# HELP passenger_nginx_app_count Number of apps."))
+		ioutil.WriteFile(scrapeFixturePath, body[idx:], 0666)
+		t.Skipf("--golden passed: re-writing %s", scrapeFixturePath)
+	}
+
+	fixture, err := ioutil.ReadFile(scrapeFixturePath)
 	if err != nil {
 		t.Fatalf("failed to read scrape fixture: %v", err)
 	}
