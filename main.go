@@ -54,7 +54,7 @@ type Exporter struct {
 	// per-process swap metrics.
 }
 
-func NewExporter(cmd string) (*Exporter, error) {
+func NewExporter(cmd string) *Exporter {
 	cmdComponents := strings.Split(cmd, " ")
 
 	return &Exporter{
@@ -138,7 +138,7 @@ func NewExporter(cmd string) (*Exporter, error) {
 			[]string{"name", "pid", "codeRevision", "lifeStatus", "enabled"},
 			nil,
 		),
-	}, nil
+	}
 }
 
 // Collect fetches the statistics from the configured memcached server, and
@@ -240,11 +240,7 @@ func main() {
 	)
 	flag.Parse()
 
-	exporter, err := NewExporter(*cmd)
-	if err != nil {
-		log.Fatalf("failed to create passenger_exporter: %v", err)
-	}
-	prometheus.MustRegister(exporter)
+	prometheus.MustRegister(NewExporter(*cmd))
 
 	http.Handle(*metricsPath, prometheus.Handler())
 
