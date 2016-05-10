@@ -241,7 +241,7 @@ func parseFloat(val string) float64 {
 
 func main() {
 	var (
-		cmd           = flag.String("passenger.command", "", "Passenger command for querying passenger status.")
+		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
 	)
