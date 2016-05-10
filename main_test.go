@@ -1,17 +1,23 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 func TestParsing(t *testing.T) {
 	tests := map[string]func(t *testing.T) *Info{
 		"newExporter": func(t *testing.T) *Info {
-			e := NewExporter("cat ./passenger_xml_output.xml")
+			e := NewExporter("cat ./testdata/passenger_xml_output.xml")
 			info, err := e.status()
 			if err != nil {
 				t.Fatalf("failed to get status: %v", err)
@@ -19,7 +25,7 @@ func TestParsing(t *testing.T) {
 			return info
 		},
 		"parseOutput": func(t *testing.T) *Info {
-			f, err := os.Open("passenger_xml_output.xml")
+			f, err := os.Open("./testdata/passenger_xml_output.xml")
 			if err != nil {
 				t.Fatalf("open xml file failed: %v", err)
 			}
@@ -57,6 +63,32 @@ func TestParsing(t *testing.T) {
 				}
 			}
 		}
+	}
+}
+
+func TestScrape(t *testing.T) {
+	prometheus.MustRegister(NewExporter("cat ./testdata/passenger_xml_output.xml"))
+	server := httptest.NewServer(prometheus.Handler())
+	defer server.Close()
+
+	res, err := http.Get(server.URL)
+	if err != nil {
+		t.Fatalf("failed to GET test server: %v", err)
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		t.Fatalf("failed to read response body: %v", err)
+	}
+
+	fixture, err := ioutil.ReadFile("./testdata/scrape_output.txt")
+	if err != nil {
+		t.Fatalf("failed to read scrape fixture: %v", err)
+	}
+
+	if !bytes.Contains(body, fixture) {
+		t.Fatalf("fixture data not contained within response body")
 	}
 }
 
