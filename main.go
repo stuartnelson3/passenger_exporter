@@ -54,11 +54,6 @@ type Exporter struct {
 	procUptime        *prometheus.Desc
 	procMemory        *prometheus.Desc
 	procStatus        *prometheus.Desc
-	// There are several Process level metrics that could be of interest,
-	// but I imagine they're already handled by node_exporter? Not sure
-	// on their granularity. e.g. passenger status exposes swap memory
-	// usage on the process, need to check if node_exporter allows
-	// per-process swap metrics.
 }
 
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
@@ -156,8 +151,6 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 	ch <- prometheus.MustNewConstMetric(e.version, prometheus.GaugeValue, 1, info.PassengerVersion)
 
-	// This value should be 0. Not sure if I should use a gauge or a
-	// counter, as we shouldn't be counting anything.
 	ch <- prometheus.MustNewConstMetric(e.toplevelQueue, prometheus.CounterValue, parseFloat(info.TopLevelRequestsInQueue))
 	ch <- prometheus.MustNewConstMetric(e.maxProcessCount, prometheus.GaugeValue, parseFloat(info.MaxProcessCount))
 	ch <- prometheus.MustNewConstMetric(e.currentProcessCount, prometheus.GaugeValue, parseFloat(info.CurrentProcessCount))
@@ -255,9 +248,9 @@ func parsePassengerInterval(val string) (time.Duration, error) {
 func main() {
 	var (
 		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
+		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
-		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
 	)
 	flag.Parse()
 
