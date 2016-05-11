@@ -25,7 +25,7 @@ func init() {
 func TestParsing(t *testing.T) {
 	tests := map[string]func(t *testing.T) *Info{
 		"newExporter": func(t *testing.T) *Info {
-			e := NewExporter("cat ./testdata/passenger_xml_output.xml")
+			e := newTestExporter()
 			info, err := e.status()
 			if err != nil {
 				t.Fatalf("failed to get status: %v", err)
@@ -75,7 +75,7 @@ func TestParsing(t *testing.T) {
 }
 
 func TestScrape(t *testing.T) {
-	prometheus.MustRegister(NewExporter("cat ./testdata/passenger_xml_output.xml"))
+	prometheus.MustRegister(newTestExporter())
 	server := httptest.NewServer(prometheus.Handler())
 	defer server.Close()
 
@@ -105,6 +105,22 @@ func TestScrape(t *testing.T) {
 	if !bytes.Contains(body, fixture) {
 		t.Fatalf("fixture data not contained within response body")
 	}
+}
+
+func TestStatusTimeout(t *testing.T) {
+	e := NewExporter("sleep 1", time.Millisecond)
+	_, err := e.status()
+	if err == nil {
+		t.Fatalf("failed to timeout")
+	}
+
+	if err != timeoutErr {
+		t.Fatalf("incorrect err: %v", err)
+	}
+}
+
+func newTestExporter() *Exporter {
+	return NewExporter("cat ./testdata/passenger_xml_output.xml", time.Second)
 }
 
 func testParsePassengerDuration(t *testing.T, uptime string) time.Duration {

@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
+	"errors"
 	"flag"
 	"io"
 	"math"
@@ -22,6 +23,8 @@ const (
 
 var (
 	Version = "0.0.0"
+
+	timeoutErr = errors.New("passenger-status command timed out")
 )
 
 // Exporter collects metrics from a passenger-nginx integration.
@@ -29,6 +32,9 @@ type Exporter struct {
 	// binary file path for querying passenger state.
 	cmd  string
 	args []string
+
+	// Passenger command timeout.
+	timeout time.Duration
 
 	// Passenger metrics.
 	up                  *prometheus.Desc
@@ -55,12 +61,13 @@ type Exporter struct {
 	// per-process swap metrics.
 }
 
-func NewExporter(cmd string) *Exporter {
+func NewExporter(cmd string, timeout time.Duration) *Exporter {
 	cmdComponents := strings.Split(cmd, " ")
 
 	return &Exporter{
-		cmd:  cmdComponents[0],
-		args: cmdComponents[1:],
+		cmd:     cmdComponents[0],
+		args:    cmdComponents[1:],
+		timeout: timeout,
 		up: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "up"),
 			"Could passenger status be queried.",
@@ -194,9 +201,23 @@ func (e *Exporter) status() (*Info, error) {
 	)
 	cmd.Stdout = &out
 
-	err := cmd.Run()
+	err := cmd.Start()
 	if err != nil {
 		return nil, err
+	}
+
+	errc := make(chan error)
+	go func(cmd *exec.Cmd, c chan<- error) {
+		c <- cmd.Wait()
+	}(cmd, errc)
+
+	select {
+	case err := <-errc:
+		if err != nil {
+			return nil, err
+		}
+	case <-time.After(e.timeout):
+		return nil, timeoutErr
 	}
 
 	return parseOutput(&out)
@@ -246,10 +267,11 @@ func main() {
 		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
+		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
 	)
 	flag.Parse()
 
-	prometheus.MustRegister(NewExporter(*cmd))
+	prometheus.MustRegister(NewExporter(*cmd, *timeout))
 
 	http.Handle(*metricsPath, prometheus.Handler())
 
