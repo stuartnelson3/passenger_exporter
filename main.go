@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"flag"
+	"fmt"
 	"io"
 	"math"
 	"net/http"
@@ -38,7 +39,6 @@ type Exporter struct {
 
 	// Passenger metrics.
 	up                  *prometheus.Desc
-	uptime              *prometheus.Desc
 	version             *prometheus.Desc
 	toplevelQueue       *prometheus.Desc
 	maxProcessCount     *prometheus.Desc
@@ -71,12 +71,6 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 		up: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "up"),
 			"Could passenger status be queried.",
-			nil,
-			nil,
-		),
-		uptime: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "uptime"),
-			"Number of seconds since passenger started.",
 			nil,
 			nil,
 		),
@@ -160,9 +154,6 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	}
 	ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 1)
 
-	// TODO: Doesn't seem to be a queryable uptime on the main process.
-	// Talk with @grobie about how to handle this.
-
 	ch <- prometheus.MustNewConstMetric(e.version, prometheus.GaugeValue, 1, info.PassengerVersion)
 
 	// This value should be 0. Not sure if I should use a gauge or a
@@ -225,7 +216,6 @@ func (e *Exporter) status() (*Info, error) {
 
 func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.up
-	ch <- e.uptime
 	ch <- e.version
 	ch <- e.toplevelQueue
 	ch <- e.maxProcessCount
@@ -270,6 +260,22 @@ func main() {
 		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
 	)
 	flag.Parse()
+
+	prometheus.MustRegister(prometheus.NewProcessCollectorPIDFn(
+		func() (int, error) {
+			var (
+				out bytes.Buffer
+				cmd = exec.Command("pidof", `"Passenger core"`)
+			)
+			cmd.Stdout = &out
+
+			if err := cmd.Run(); err != nil {
+				return 0, fmt.Errorf("error running pid command: %s", cmd.Args)
+			}
+			return strconv.Atoi(out.String())
+		},
+		namespace),
+	)
 
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
 
