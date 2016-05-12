@@ -215,6 +215,35 @@ func TestUpdateProcessIdentifiers(t *testing.T) {
 	}
 }
 
+func TestInsertingNewProcesses(t *testing.T) {
+	spec := newUpdateProcessSpec(
+		"inserting processes",
+		map[string]int{
+			"abc": 0,
+			"cdf": 1,
+			"dfe": 2,
+			"efg": 3,
+		},
+		[]Process{
+			Process{PID: "abc"},
+			Process{PID: "dfe"},
+			Process{PID: "newPID"},
+			Process{PID: "newPID2"},
+		},
+	)
+
+	if len(spec.output) != len(spec.processes) {
+		t.Fatalf("case %s: proceses improperly copied to output: len(output) (%d) does not match len(processes) (%d)", spec.name, len(spec.output), len(spec.processes))
+	}
+
+	if want, got := 1, spec.output["newPID"]; want != got {
+		t.Fatalf("updateProcesses did not correctly map the new PID: wanted %d, got %d", want, got)
+	}
+	if want, got := 3, spec.output["newPID2"]; want != got {
+		t.Fatalf("updateProcesses did not correctly map the new PID: wanted %d, got %d", want, got)
+	}
+}
+
 func newTestExporter() *Exporter {
 	return NewExporter("cat ./testdata/passenger_xml_output.xml", time.Second)
 }

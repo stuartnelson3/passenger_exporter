@@ -278,8 +278,7 @@ func updateProcesses(old map[string]int, processes []Process) map[string]int {
 			if j >= len(missing) {
 				continue
 			}
-			// pid position is unclaimed.
-			found[i] = missing[j]
+			pid = missing[j]
 			j++
 		}
 		updated[pid] = i
