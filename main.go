@@ -288,9 +288,6 @@ func updateProcesses(old map[string]int, processes []Process) map[string]int {
 	// updated, thereby cleaning the return value of unused PIDs.
 	if j < len(missing) {
 		count := len(found)
-		// Need to figure out how to control the range of the slice to
-		// only loop through the items that haven't been added to the
-		// updated map yet.
 		for i, pid := range missing[j:] {
 			updated[pid] = count + i
 		}
