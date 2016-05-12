@@ -275,8 +275,12 @@ func updateProcesses(old map[string]int, processes []Process) map[string]int {
 	j := 0
 	for i, pid := range found {
 		if pid == "" {
+			if j >= len(missing) {
+				continue
+			}
 			// pid position is unclaimed.
 			found[i] = missing[j]
+			j++
 		}
 		updated[pid] = i
 	}

@@ -165,6 +165,38 @@ func TestUpdateProcessIdentifiers(t *testing.T) {
 				Process{PID: "dfe"},
 			},
 		),
+		newUpdateProcessSpec(
+			"increase processes",
+			map[string]int{
+				"abc": 0,
+				"cdf": 1,
+				"dfe": 2,
+			},
+			[]Process{
+				Process{PID: "abc"},
+				Process{PID: "cdf"},
+				Process{PID: "dfe"},
+				Process{PID: "ghi"},
+				Process{PID: "jkl"},
+				Process{PID: "lmn"},
+			},
+		),
+		newUpdateProcessSpec(
+			"reduce processes",
+			map[string]int{
+				"abc": 0,
+				"cdf": 1,
+				"dfe": 2,
+				"ghi": 3,
+				"jkl": 4,
+				"lmn": 5,
+			},
+			[]Process{
+				Process{PID: "abc"},
+				Process{PID: "cdf"},
+				Process{PID: "dfe"},
+			},
+		),
 	} {
 		if len(spec.output) != len(spec.processes) {
 			t.Fatalf("case %s: proceses improperly copied to output: len(output) (%d) does not match len(processes) (%d)", spec.name, len(spec.output), len(spec.processes))
