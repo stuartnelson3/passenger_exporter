@@ -55,7 +55,6 @@ type Exporter struct {
 	requestsProcessed *prometheus.Desc
 	procUptime        *prometheus.Desc
 	procMemory        *prometheus.Desc
-	procStatus        *prometheus.Desc
 }
 
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
@@ -122,19 +121,13 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 		procUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "proc_uptime"),
 			"Number of seconds since processor started.",
-			[]string{"name", "pid"},
+			[]string{"name", "pid", "codeRevision"},
 			nil,
 		),
 		procMemory: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "proc_memory"),
 			"Memory consumed by a process",
 			[]string{"name", "pid"},
-			nil,
-		),
-		procStatus: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "proc_status"),
-			"Running status for a process.",
-			[]string{"name", "pid", "codeRevision", "lifeStatus", "enabled"},
 			nil,
 		),
 	}
@@ -162,20 +155,19 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
 		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
 
-		// TODO: Update the processes map here
+		// Update process identifiers map.
+		processIdentifiers = updateProcesses(processIdentifiers, sg.Group.Processes)
 		for _, proc := range sg.Group.Processes {
-			ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(proc.BucketID))
-			ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(proc.BucketID))
+			if bucketID, ok := processIdentifiers[proc.PID]; ok {
+				ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(bucketID))
+				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
 
-			if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
-				ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime), sg.Name, strconv.Itoa(proc.BucketID))
+				if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
+					ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime),
+						sg.Name, strconv.Itoa(bucketID), proc.CodeRevision,
+					)
+				}
 			}
-
-			// Is this one really necessary?
-			ch <- prometheus.MustNewConstMetric(
-				e.procStatus, prometheus.CounterValue, 1,
-				sg.Name, proc.PID, proc.CodeRevision, proc.LifeStatus, proc.Enabled,
-			)
 		}
 	}
 
@@ -222,7 +214,6 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.requestsProcessed
 	ch <- e.procUptime
 	ch <- e.procMemory
-	ch <- e.procStatus
 }
 
 func parseOutput(r io.Reader) (*Info, error) {
@@ -247,6 +238,13 @@ func parseFloat(val string) float64 {
 // TTLs cause new processes to be created on a user-defined cycle. When a new
 // process replaces an old process, the new process's statistics will be
 // bucketed with those of the process it replaced.
+// Processes are restarted at an offset, user-defined interval. The
+// restarted process is appended to the end of the status output.  For
+// maintaining consistent process identifiers between process starts,
+// pids are mapped to an identifier based on process count. When a new
+// process/pid appears, it is mapped to either the first empty place
+// within the global map storing process identifiers, or mapped to
+// pid:id pair in the map.
 func updateProcesses(old map[string]int, processes []Process) map[string]int {
 	var (
 		updated = make(map[string]int)
