@@ -68,6 +68,15 @@ type Process struct {
 	VMSize              string `xml:"vmsize"`
 	Concurrency         string `xml:"concurrency"`
 	SpawnStartTime      string `xml:"spawn_start_time"`
+
+	// Processes are restarted at an offset, user-defined interval. The
+	// restarted process is appended to the end of the status output.  For
+	// maintaining consistent process identifiers between process starts,
+	// pids are mapped to an identifier based on process count. When a new
+	// process/pid appears, it is mapped to either the first empty place
+	// within the global map storing process identifiers, or mapped to
+	// pid:id pair in the map.
+	BucketID int
 }
 
 type Options struct {

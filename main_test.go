@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -116,6 +117,69 @@ func TestStatusTimeout(t *testing.T) {
 
 	if err != timeoutErr {
 		t.Fatalf("incorrect err: %v", err)
+	}
+}
+
+type updateProcessSpec struct {
+	name      string
+	input     map[string]int
+	processes []Process
+	output    map[string]int
+}
+
+func newUpdateProcessSpec(
+	name string,
+	input map[string]int,
+	processes []Process,
+) updateProcessSpec {
+	s := updateProcessSpec{
+		name:      name,
+		input:     input,
+		processes: processes,
+	}
+	s.output = updateProcesses(s.input, s.processes)
+	return s
+}
+
+func TestUpdateProcessIdentifiers(t *testing.T) {
+	for _, spec := range []updateProcessSpec{
+		newUpdateProcessSpec(
+			"empty input",
+			map[string]int{},
+			[]Process{
+				Process{PID: "abc"},
+				Process{PID: "cdf"},
+				Process{PID: "dfe"},
+			},
+		),
+		newUpdateProcessSpec(
+			"1:1",
+			map[string]int{
+				"abc": 0,
+				"cdf": 1,
+				"dfe": 2,
+			},
+			[]Process{
+				Process{PID: "abc"},
+				Process{PID: "cdf"},
+				Process{PID: "dfe"},
+			},
+		),
+	} {
+		if len(spec.output) != len(spec.processes) {
+			t.Fatalf("case %s: proceses improperly copied to output: len(output) (%d) does not match len(processes) (%d)", spec.name, len(spec.output), len(spec.processes))
+		}
+
+		for _, p := range spec.processes {
+			if _, ok := spec.output[p.PID]; !ok {
+				t.Fatalf("case %s: pid not copied into map", spec.name)
+			}
+		}
+
+		newOutput := updateProcesses(spec.output, spec.processes)
+		if !reflect.DeepEqual(newOutput, spec.output) {
+			t.Fatalf("case %s: updateProcesses is not idempotent", spec.name)
+		}
 	}
 }
 

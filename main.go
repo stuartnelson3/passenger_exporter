@@ -26,6 +26,8 @@ var (
 	Version = "0.0.0"
 
 	timeoutErr = errors.New("passenger-status command timed out")
+
+	processIdentifiers = make(map[string]int)
 )
 
 // Exporter collects metrics from a passenger-nginx integration.
@@ -160,12 +162,13 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
 		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
 
+		// TODO: Update the processes map here
 		for _, proc := range sg.Group.Processes {
-			ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, proc.PID)
-			ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, proc.PID)
+			ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(proc.BucketID))
+			ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(proc.BucketID))
 
 			if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
-				ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime), sg.Name, proc.PID)
+				ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime), sg.Name, strconv.Itoa(proc.BucketID))
 			}
 
 			// Is this one really necessary?
@@ -238,6 +241,61 @@ func parseFloat(val string) float64 {
 		v = math.NaN()
 	}
 	return v
+}
+
+// updateProcesses updates the global map from process id:exporter id. Process
+// TTLs cause new processes to be created on a user-defined cycle. When a new
+// process replaces an old process, the new process's statistics will be
+// bucketed with those of the process it replaced.
+func updateProcesses(old map[string]int, processes []Process) map[string]int {
+	var (
+		updated = make(map[string]int)
+		found   = make([]string, len(old))
+		missing []string
+	)
+
+	for _, p := range processes {
+		if id, ok := old[p.PID]; ok {
+			found[id] = p.PID
+			// id also serves as an index.
+			// By putting the pid at a certain index, we can loop
+			// through the array to find the values that are the 0
+			// value (empty string).
+			// If index i has the empty value, then it was never
+			// updated, so we slot the first of the missingPIDs
+			// into that position. Passenger-status orders output
+			// by pid, increasing. We can then assume that
+			// unclaimed pid positions map in order to the missing
+			// pids.
+		} else {
+			missing = append(missing, p.PID)
+		}
+	}
+
+	j := 0
+	for i, pid := range found {
+		if pid == "" {
+			// pid position is unclaimed.
+			found[i] = missing[j]
+		}
+		updated[pid] = i
+	}
+
+	// If the number of elements in missing iterated through is less
+	// than len(missing), there are new elements to be added to the map.
+	// Unused pids from the last collection are not copied from old to
+	// updated, thereby cleaning the return value of unused PIDs.
+	if j < len(missing) {
+		count := len(found)
+		// Need to figure out how to control the range of the slice to
+		// only loop through the items that haven't been added to the
+		// updated map yet.
+		for i, pid := range missing[j:] {
+			updated[pid] = count + i
+		}
+	}
+
+	return updated
 }
 
 // parsePassengerInterval formats and parses the default Passenger time output.
