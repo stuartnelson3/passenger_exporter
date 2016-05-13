@@ -1,0 +1,174 @@
+# HELP passenger_nginx_app_count Number of apps.
+# TYPE passenger_nginx_app_count gauge
+passenger_nginx_app_count 1
+# HELP passenger_nginx_app_procs_spawning Number of processes spawning.
+# TYPE passenger_nginx_app_procs_spawning gauge
+passenger_nginx_app_procs_spawning{name="/srv/app/my_app (production)"} 0
+# HELP passenger_nginx_app_queue Number of requests in app process queues.
+# TYPE passenger_nginx_app_queue gauge
+passenger_nginx_app_queue{name="/srv/app/my_app (production)"} 0
+# HELP passenger_nginx_current_process_count Current number of processes.
+# TYPE passenger_nginx_current_process_count gauge
+passenger_nginx_current_process_count 48
+# HELP passenger_nginx_max_process_count Configured maximum number of processes.
+# TYPE passenger_nginx_max_process_count gauge
+passenger_nginx_max_process_count 48
+# HELP passenger_nginx_proc_memory Memory consumed by a process
+# TYPE passenger_nginx_proc_memory gauge
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="0"} 330012
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="1"} 303296
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="10"} 303984
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="11"} 289680
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="12"} 306148
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="13"} 293128
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="14"} 322064
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="15"} 297124
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="16"} 290364
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="17"} 292056
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="18"} 272784
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="19"} 281176
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="2"} 288884
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="20"} 269520
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="21"} 269404
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="22"} 275844
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="23"} 276412
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="24"} 267316
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="25"} 265152
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="26"} 261144
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="27"} 260224
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="28"} 243688
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="29"} 243724
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="3"} 293316
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="30"} 261492
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="31"} 260196
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="32"} 244720
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="33"} 261268
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="34"} 261320
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="35"} 244740
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="36"} 244656
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="37"} 244860
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="38"} 244752
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="39"} 244708
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="4"} 330412
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="40"} 244684
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="41"} 255428
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="42"} 243744
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="43"} 254432
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="44"} 243592
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="45"} 244640
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="46"} 242576
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="47"} 255376
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="5"} 306904
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="6"} 330644
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="7"} 315104
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="8"} 288508
+passenger_nginx_proc_memory{name="/srv/app/my_app (production)",pid="9"} 306520
+# HELP passenger_nginx_proc_uptime Number of seconds since processor started.
+# TYPE passenger_nginx_proc_uptime counter
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="0"} 2.094e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="1"} 2.083e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="10"} 1.992e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="11"} 1.982e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="12"} 1.972e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="13"} 1.962e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="14"} 1.951e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="15"} 1.941e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="16"} 1.931e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="17"} 1.921e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="18"} 1.911e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="19"} 1.9e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="2"} 2.073e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="20"} 1.891e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="21"} 1.88e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="22"} 1.868e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="23"} 1.858e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="24"} 1.848e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="25"} 1.838e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="26"} 1.828e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="27"} 1.818e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="28"} 1.808e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="29"} 1.798e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="3"} 2.063e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="30"} 1.788e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="31"} 1.778e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="32"} 1.766e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="33"} 1.756e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="34"} 1.745e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="35"} 1.735e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="36"} 1.725e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="37"} 1.715e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="38"} 1.705e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="39"} 1.695e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="4"} 2.053e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="40"} 1.685e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="41"} 1.674e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="42"} 1.664e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="43"} 1.654e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="44"} 1.644e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="45"} 1.635e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="46"} 1.625e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="47"} 1.614e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="5"} 2.042e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="6"} 2.032e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="7"} 2.022e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="8"} 2.012e+12
+passenger_nginx_proc_uptime{codeRevision="4fef3ec",name="/srv/app/my_app (production)",pid="9"} 2.002e+12
+# HELP passenger_nginx_requests_processed Number of processes served by a process.
+# TYPE passenger_nginx_requests_processed counter
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="0"} 43578
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="1"} 48130
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="10"} 26226
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="11"} 22752
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="12"} 18646
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="13"} 15254
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="14"} 11561
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="15"} 9107
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="16"} 6831
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="17"} 4804
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="18"} 3420
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="19"} 2150
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="2"} 46701
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="20"} 1333
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="21"} 809
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="22"} 504
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="23"} 288
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="24"} 161
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="25"} 99
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="26"} 60
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="27"} 49
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="28"} 24
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="29"} 19
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="3"} 45134
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="30"} 9
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="31"} 5
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="32"} 4
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="33"} 4
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="34"} 2
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="35"} 2
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="36"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="37"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="38"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="39"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="4"} 42932
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="40"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="41"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="42"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="43"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="44"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="45"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="46"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="47"} 0
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="5"} 40815
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="6"} 38615
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="7"} 35802
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="8"} 33600
+passenger_nginx_requests_processed{name="/srv/app/my_app (production)",pid="9"} 30490
+# HELP passenger_nginx_top_level_queue Number of requests in the top-level queue.
+# TYPE passenger_nginx_top_level_queue counter
+passenger_nginx_top_level_queue 0
+# HELP passenger_nginx_up Could passenger status be queried.
+# TYPE passenger_nginx_up gauge
+passenger_nginx_up 1
+# HELP passenger_nginx_version Version of passenger
+# TYPE passenger_nginx_version gauge
+passenger_nginx_version{version="5.0.26"} 1

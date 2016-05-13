@@ -1,0 +1,1412 @@
+<?xml version="1.0" ?>
+<info version="3">
+  <passenger_version>5.0.26</passenger_version>
+  <group_count>1</group_count>
+  <process_count>48</process_count>
+  <max>48</max>
+  <capacity_used>48</capacity_used>
+  <get_wait_list_size>0</get_wait_list_size>
+  <supergroups>
+    <supergroup>
+      <name>/srv/app/my_app &#40;production&#41;</name>
+      <state>READY</state>
+      <get_wait_list_size>0</get_wait_list_size>
+      <capacity_used>48</capacity_used>
+      <group default="true">
+        <name>/srv/app/my_app &#40;production&#41;</name>
+        <component_name>/srv/app/my_app &#40;production&#41;</component_name>
+        <app_root>/src/app/my_app</app_root>
+        <app_type>rack</app_type>
+        <environment>production</environment>
+        <uuid>8Hm3HqBZb7N15rnueVkv</uuid>
+        <enabled_process_count>48</enabled_process_count>
+        <disabling_process_count>0</disabling_process_count>
+        <disabled_process_count>0</disabled_process_count>
+        <capacity_used>48</capacity_used>
+        <get_wait_list_size>0</get_wait_list_size>
+        <disable_wait_list_size>0</disable_wait_list_size>
+        <processes_being_spawned>0</processes_being_spawned>
+        <life_status>ALIVE</life_status>
+        <user>user</user>
+        <uid>5001</uid>
+        <group>daemon</group>
+        <gid>1</gid>
+        <options>
+          <app_root>/src/app/my_app</app_root>
+          <app_group_name>/srv/app/my_app &#40;production&#41;</app_group_name>
+          <app_type>rack</app_type>
+          <start_command>/usr/local/rvm/wrappers/my_app/ruby&#9;/usr/share/passenger/helper-scripts/rack-loader.rb</start_command>
+          <startup_file>/src/app/my_app/config.ru</startup_file>
+          <process_title>Passenger RubyApp</process_title>
+          <log_level>3</log_level>
+          <start_timeout>90000</start_timeout>
+          <environment>production</environment>
+          <base_uri>/</base_uri>
+          <spawn_method>direct</spawn_method>
+          <default_user>nobody</default_user>
+          <default_group>nogroup</default_group>
+          <integration_mode>nginx</integration_mode>
+          <ruby>/usr/local/rvm/wrappers/ruby</ruby>
+          <python>python</python>
+          <nodejs>node</nodejs>
+          <ust_router_address>unix:/tmp/passenger.VRsg2bH/agents.s/ust_router</ust_router_address>
+          <ust_router_username>logging</ust_router_username>
+          <ust_router_password>cdf456abc123</ust_router_password>
+          <debugger>false</debugger>
+          <analytics>false</analytics>
+          <api_key>abc123cdf456</api_key>
+          <min_processes>48</min_processes>
+          <max_processes>0</max_processes>
+          <max_preloader_idle_time>300</max_preloader_idle_time>
+          <max_out_of_band_work_instances>1</max_out_of_band_work_instances>
+        </options>
+        <processes>
+          <process>
+            <pid>1402</pid>
+            <sticky_session_id>1426775948</sticky_session_id>
+            <gupid>173ed63-TeHDFL632j</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>43578</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477621746427</spawn_start_time>
+            <spawn_end_time>1462477631572024</spawn_end_time>
+            <last_used>1462479725218338</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>34m 54s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>50</cpu>
+            <rss>337080</rss>
+            <pss>330147</pss>
+            <private_dirty>330012</private_dirty>
+            <swap>0</swap>
+            <real_memory>330012</real_memory>
+            <vmsize>530184</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>1637</pid>
+            <sticky_session_id>666293237</sticky_session_id>
+            <gupid>173ed63-ejA3tFZXAB</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>48130</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477631877173</spawn_start_time>
+            <spawn_end_time>1462477642289408</spawn_end_time>
+            <last_used>1462479725262357</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>34m 43s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>55</cpu>
+            <rss>310364</rss>
+            <pss>303421</pss>
+            <private_dirty>303296</private_dirty>
+            <swap>0</swap>
+            <real_memory>303296</real_memory>
+            <vmsize>533952</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>1880</pid>
+            <sticky_session_id>1305457967</sticky_session_id>
+            <gupid>173ed63-EQ4JQiaM33</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>46701</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477642293846</spawn_start_time>
+            <spawn_end_time>1462477652943209</spawn_end_time>
+            <last_used>1462479724844363</last_used>
+            <last_used_desc>1s ago</last_used_desc>
+            <uptime>34m 33s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>53</cpu>
+            <rss>295912</rss>
+            <pss>289008</pss>
+            <private_dirty>288884</private_dirty>
+            <swap>0</swap>
+            <real_memory>288884</real_memory>
+            <vmsize>535032</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>2090</pid>
+            <sticky_session_id>627117352</sticky_session_id>
+            <gupid>173ed63-UY5RicnpEA</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>45134</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477652947361</spawn_start_time>
+            <spawn_end_time>1462477662976930</spawn_end_time>
+            <last_used>1462479724951789</last_used>
+            <last_used_desc>1s ago</last_used_desc>
+            <uptime>34m 23s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>53</cpu>
+            <rss>300440</rss>
+            <pss>293442</pss>
+            <private_dirty>293316</private_dirty>
+            <swap>0</swap>
+            <real_memory>293316</real_memory>
+            <vmsize>538564</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>2647</pid>
+            <sticky_session_id>101372228</sticky_session_id>
+            <gupid>173ed63-enV6qh36yc</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>42932</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477662980843</spawn_start_time>
+            <spawn_end_time>1462477672930248</spawn_end_time>
+            <last_used>1462479725234990</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>34m 13s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>51</cpu>
+            <rss>337484</rss>
+            <pss>330538</pss>
+            <private_dirty>330412</private_dirty>
+            <swap>0</swap>
+            <real_memory>330412</real_memory>
+            <vmsize>565512</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>2884</pid>
+            <sticky_session_id>446489916</sticky_session_id>
+            <gupid>173ed63-UOTYRo6T37</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>40815</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477672934823</spawn_start_time>
+            <spawn_end_time>1462477683007183</spawn_end_time>
+            <last_used>1462479725071885</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>34m 2s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>48</cpu>
+            <rss>314012</rss>
+            <pss>307031</pss>
+            <private_dirty>306904</private_dirty>
+            <swap>0</swap>
+            <real_memory>306904</real_memory>
+            <vmsize>553528</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>3106</pid>
+            <sticky_session_id>299295286</sticky_session_id>
+            <gupid>173ed64-mZ9L6PcZEs</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>38615</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477683011350</spawn_start_time>
+            <spawn_end_time>1462477693178718</spawn_end_time>
+            <last_used>1462479725291842</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>33m 52s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>47</cpu>
+            <rss>337672</rss>
+            <pss>330767</pss>
+            <private_dirty>330644</private_dirty>
+            <swap>0</swap>
+            <real_memory>330644</real_memory>
+            <vmsize>565532</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>3334</pid>
+            <sticky_session_id>667881184</sticky_session_id>
+            <gupid>173ed64-XBlpQQZLXJ</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>35802</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477693183044</spawn_start_time>
+            <spawn_end_time>1462477703321941</spawn_end_time>
+            <last_used>1462479724987085</last_used>
+            <last_used_desc>1s ago</last_used_desc>
+            <uptime>33m 42s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>44</cpu>
+            <rss>322240</rss>
+            <pss>315232</pss>
+            <private_dirty>315104</private_dirty>
+            <swap>0</swap>
+            <real_memory>315104</real_memory>
+            <vmsize>543884</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>3563</pid>
+            <sticky_session_id>1062530630</sticky_session_id>
+            <gupid>173ed64-jhg5vrpweV</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>33600</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477703325622</spawn_start_time>
+            <spawn_end_time>1462477713243586</spawn_end_time>
+            <last_used>1462479725291925</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>33m 32s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>41</cpu>
+            <rss>295624</rss>
+            <pss>288635</pss>
+            <private_dirty>288508</private_dirty>
+            <swap>0</swap>
+            <real_memory>288508</real_memory>
+            <vmsize>533904</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>3915</pid>
+            <sticky_session_id>226965806</sticky_session_id>
+            <gupid>173ed64-sAwUDHDn6k</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>30490</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477713247599</spawn_start_time>
+            <spawn_end_time>1462477723643876</spawn_end_time>
+            <last_used>1462479725295845</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>33m 22s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>37</cpu>
+            <rss>313604</rss>
+            <pss>306643</pss>
+            <private_dirty>306520</private_dirty>
+            <swap>0</swap>
+            <real_memory>306520</real_memory>
+            <vmsize>553560</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>4346</pid>
+            <sticky_session_id>1979202167</sticky_session_id>
+            <gupid>173ed64-kSn7riha8B</gupid>
+            <concurrency>1</concurrency>
+            <sessions>1</sessions>
+            <busyness>2147483647</busyness>
+            <processed>26226</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477723648048</spawn_start_time>
+            <spawn_end_time>1462477733690141</spawn_end_time>
+            <last_used>1462479725280878</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>33m 12s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>33</cpu>
+            <rss>311080</rss>
+            <pss>304109</pss>
+            <private_dirty>303984</private_dirty>
+            <swap>0</swap>
+            <real_memory>303984</real_memory>
+            <vmsize>534016</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>4827</pid>
+            <sticky_session_id>1762835163</sticky_session_id>
+            <gupid>173ed64-aaFLGBypIZ</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>22752</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477733694204</spawn_start_time>
+            <spawn_end_time>1462477743873688</spawn_end_time>
+            <last_used>1462479725277911</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>33m 2s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>29</cpu>
+            <rss>296720</rss>
+            <pss>289804</pss>
+            <private_dirty>289680</private_dirty>
+            <swap>0</swap>
+            <real_memory>289680</real_memory>
+            <vmsize>536476</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>5661</pid>
+            <sticky_session_id>637108664</sticky_session_id>
+            <gupid>173ed65-XVCGmm8J9u</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>18646</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477743877339</spawn_start_time>
+            <spawn_end_time>1462477753925234</spawn_end_time>
+            <last_used>1462479725273013</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 52s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>25</cpu>
+            <rss>313164</rss>
+            <pss>306273</pss>
+            <private_dirty>306148</private_dirty>
+            <swap>0</swap>
+            <real_memory>306148</real_memory>
+            <vmsize>540932</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>6738</pid>
+            <sticky_session_id>1507515087</sticky_session_id>
+            <gupid>173ed65-sZs72jvOhV</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>15254</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477753929074</spawn_start_time>
+            <spawn_end_time>1462477763990033</spawn_end_time>
+            <last_used>1462479725278205</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 42s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>20</cpu>
+            <rss>300160</rss>
+            <pss>293253</pss>
+            <private_dirty>293128</private_dirty>
+            <swap>0</swap>
+            <real_memory>293128</real_memory>
+            <vmsize>524844</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>6974</pid>
+            <sticky_session_id>2100329215</sticky_session_id>
+            <gupid>173ed65-9X7veIwdgH</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>11561</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477763994130</spawn_start_time>
+            <spawn_end_time>1462477774066132</spawn_end_time>
+            <last_used>1462479725208853</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 31s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>15</cpu>
+            <rss>329060</rss>
+            <pss>322187</pss>
+            <private_dirty>322064</private_dirty>
+            <swap>0</swap>
+            <real_memory>322064</real_memory>
+            <vmsize>522016</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>7195</pid>
+            <sticky_session_id>958480600</sticky_session_id>
+            <gupid>173ed65-CLT0g3GnLC</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>9107</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477774070179</spawn_start_time>
+            <spawn_end_time>1462477784342326</spawn_end_time>
+            <last_used>1462479725210092</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 21s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>13</cpu>
+            <rss>304068</rss>
+            <pss>297243</pss>
+            <private_dirty>297124</private_dirty>
+            <swap>0</swap>
+            <real_memory>297124</real_memory>
+            <vmsize>526840</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>7409</pid>
+            <sticky_session_id>1743847664</sticky_session_id>
+            <gupid>173ed65-SZdH4GzKtE</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>6831</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477784346256</spawn_start_time>
+            <spawn_end_time>1462477794418093</spawn_end_time>
+            <last_used>1462479725069799</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 11s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>10</cpu>
+            <rss>297464</rss>
+            <pss>290486</pss>
+            <private_dirty>290364</private_dirty>
+            <swap>0</swap>
+            <real_memory>290364</real_memory>
+            <vmsize>521104</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>7643</pid>
+            <sticky_session_id>438490534</sticky_session_id>
+            <gupid>173ed65-uBXOexWTdM</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>4804</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477794421818</spawn_start_time>
+            <spawn_end_time>1462477804850256</spawn_end_time>
+            <last_used>1462479725073291</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>32m 1s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>7</cpu>
+            <rss>299060</rss>
+            <pss>292178</pss>
+            <private_dirty>292056</private_dirty>
+            <swap>0</swap>
+            <real_memory>292056</real_memory>
+            <vmsize>522004</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>7862</pid>
+            <sticky_session_id>1569743352</sticky_session_id>
+            <gupid>173ed66-f6LhcTlwDO</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>3420</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477804855698</spawn_start_time>
+            <spawn_end_time>1462477814901925</spawn_end_time>
+            <last_used>1462479725079017</last_used>
+            <last_used_desc>0s ago</last_used_desc>
+            <uptime>31m 51s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>5</cpu>
+            <rss>279860</rss>
+            <pss>272905</pss>
+            <private_dirty>272784</private_dirty>
+            <swap>0</swap>
+            <real_memory>272784</real_memory>
+            <vmsize>518992</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>8079</pid>
+            <sticky_session_id>1329178358</sticky_session_id>
+            <gupid>173ed66-sWdy7QztLt</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>2150</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477814908099</spawn_start_time>
+            <spawn_end_time>1462477825025175</spawn_end_time>
+            <last_used>1462479722285638</last_used>
+            <last_used_desc>3s ago</last_used_desc>
+            <uptime>31m 40s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>3</cpu>
+            <rss>288100</rss>
+            <pss>281294</pss>
+            <private_dirty>281176</private_dirty>
+            <swap>0</swap>
+            <real_memory>281176</real_memory>
+            <vmsize>511240</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>8301</pid>
+            <sticky_session_id>1771411003</sticky_session_id>
+            <gupid>173ed66-stehxqSh08</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>1333</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477825029412</spawn_start_time>
+            <spawn_end_time>1462477834978120</spawn_end_time>
+            <last_used>1462479722286757</last_used>
+            <last_used_desc>3s ago</last_used_desc>
+            <uptime>31m 31s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>2</cpu>
+            <rss>276504</rss>
+            <pss>269638</pss>
+            <private_dirty>269520</private_dirty>
+            <swap>0</swap>
+            <real_memory>269520</real_memory>
+            <vmsize>450516</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>8526</pid>
+            <sticky_session_id>1260272985</sticky_session_id>
+            <gupid>173ed66-Kz6WDi7reb</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>809</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477834982386</spawn_start_time>
+            <spawn_end_time>1462477845022117</spawn_end_time>
+            <last_used>1462479722287097</last_used>
+            <last_used_desc>3s ago</last_used_desc>
+            <uptime>31m 20s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>1</cpu>
+            <rss>276056</rss>
+            <pss>269521</pss>
+            <private_dirty>269404</private_dirty>
+            <swap>0</swap>
+            <real_memory>269404</real_memory>
+            <vmsize>450436</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>8976</pid>
+            <sticky_session_id>469660305</sticky_session_id>
+            <gupid>173ed66-niEXUU1v1U</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>504</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477847109602</spawn_start_time>
+            <spawn_end_time>1462477857256122</spawn_end_time>
+            <last_used>1462479722102361</last_used>
+            <last_used_desc>3s ago</last_used_desc>
+            <uptime>31m 8s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>1</cpu>
+            <rss>282696</rss>
+            <pss>275959</pss>
+            <private_dirty>275844</private_dirty>
+            <swap>0</swap>
+            <real_memory>275844</real_memory>
+            <vmsize>501564</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>9201</pid>
+            <sticky_session_id>1359002005</sticky_session_id>
+            <gupid>173ed66-FC7GaIyznV</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>288</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477857261454</spawn_start_time>
+            <spawn_end_time>1462477867264109</spawn_end_time>
+            <last_used>1462479714371904</last_used>
+            <last_used_desc>11s ago</last_used_desc>
+            <uptime>30m 58s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>1</cpu>
+            <rss>283240</rss>
+            <pss>276526</pss>
+            <private_dirty>276412</private_dirty>
+            <swap>0</swap>
+            <real_memory>276412</real_memory>
+            <vmsize>503040</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>9459</pid>
+            <sticky_session_id>9226044</sticky_session_id>
+            <gupid>173ed67-MguYffN40b</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>161</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477867268044</spawn_start_time>
+            <spawn_end_time>1462477877287745</spawn_end_time>
+            <last_used>1462479714371920</last_used>
+            <last_used_desc>11s ago</last_used_desc>
+            <uptime>30m 48s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>274196</rss>
+            <pss>267431</pss>
+            <private_dirty>267316</private_dirty>
+            <swap>0</swap>
+            <real_memory>267316</real_memory>
+            <vmsize>501000</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>9686</pid>
+            <sticky_session_id>1621862307</sticky_session_id>
+            <gupid>173ed67-9hndJcQdlc</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>99</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477877292558</spawn_start_time>
+            <spawn_end_time>1462477887380045</spawn_end_time>
+            <last_used>1462479689907679</last_used>
+            <last_used_desc>36s ago</last_used_desc>
+            <uptime>30m 38s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>271996</rss>
+            <pss>265267</pss>
+            <private_dirty>265152</private_dirty>
+            <swap>0</swap>
+            <real_memory>265152</real_memory>
+            <vmsize>493856</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>9895</pid>
+            <sticky_session_id>1534216706</sticky_session_id>
+            <gupid>173ed67-6UG0ekRegb</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>60</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477887383830</spawn_start_time>
+            <spawn_end_time>1462477897347665</spawn_end_time>
+            <last_used>1462479678442770</last_used>
+            <last_used_desc>47s ago</last_used_desc>
+            <uptime>30m 28s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>268064</rss>
+            <pss>261258</pss>
+            <private_dirty>261144</private_dirty>
+            <swap>0</swap>
+            <real_memory>261144</real_memory>
+            <vmsize>487236</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>10126</pid>
+            <sticky_session_id>2029602231</sticky_session_id>
+            <gupid>173ed67-rdX9bP7UyB</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>49</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477897351605</spawn_start_time>
+            <spawn_end_time>1462477907327589</spawn_end_time>
+            <last_used>1462479599147273</last_used>
+            <last_used_desc>2m 6s ago</last_used_desc>
+            <uptime>30m 18s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>267140</rss>
+            <pss>260338</pss>
+            <private_dirty>260224</private_dirty>
+            <swap>0</swap>
+            <real_memory>260224</real_memory>
+            <vmsize>487240</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>10357</pid>
+            <sticky_session_id>290157670</sticky_session_id>
+            <gupid>173ed67-qOTawsabz7</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>24</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477907331650</spawn_start_time>
+            <spawn_end_time>1462477917659112</spawn_end_time>
+            <last_used>1462479599149297</last_used>
+            <last_used_desc>2m 6s ago</last_used_desc>
+            <uptime>30m 8s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>250536</rss>
+            <pss>243802</pss>
+            <private_dirty>243688</private_dirty>
+            <swap>0</swap>
+            <real_memory>243688</real_memory>
+            <vmsize>487392</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>10591</pid>
+            <sticky_session_id>813509006</sticky_session_id>
+            <gupid>173ed67-1kEwZaTo7E</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>19</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477917663129</spawn_start_time>
+            <spawn_end_time>1462477927846178</spawn_end_time>
+            <last_used>1462479599149485</last_used>
+            <last_used_desc>2m 6s ago</last_used_desc>
+            <uptime>29m 58s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>250656</rss>
+            <pss>243840</pss>
+            <private_dirty>243724</private_dirty>
+            <swap>0</swap>
+            <real_memory>243724</real_memory>
+            <vmsize>489316</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>10863</pid>
+            <sticky_session_id>548411821</sticky_session_id>
+            <gupid>173ed68-vhjWIlZ2ej</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>9</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477927850285</spawn_start_time>
+            <spawn_end_time>1462477937605604</spawn_end_time>
+            <last_used>1462479476254444</last_used>
+            <last_used_desc>4m 9s ago</last_used_desc>
+            <uptime>29m 48s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>268408</rss>
+            <pss>261605</pss>
+            <private_dirty>261492</private_dirty>
+            <swap>0</swap>
+            <real_memory>261492</real_memory>
+            <vmsize>487476</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>11354</pid>
+            <sticky_session_id>1595615637</sticky_session_id>
+            <gupid>173ed68-qb3GGq82gp</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>5</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477937608077</spawn_start_time>
+            <spawn_end_time>1462477947480275</spawn_end_time>
+            <last_used>1462479476256611</last_used>
+            <last_used_desc>4m 9s ago</last_used_desc>
+            <uptime>29m 38s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>267072</rss>
+            <pss>260309</pss>
+            <private_dirty>260196</private_dirty>
+            <swap>0</swap>
+            <real_memory>260196</real_memory>
+            <vmsize>487312</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>11561</pid>
+            <sticky_session_id>649784049</sticky_session_id>
+            <gupid>173ed68-dWihylQQkt</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>4</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477947484222</spawn_start_time>
+            <spawn_end_time>1462477959613863</spawn_end_time>
+            <last_used>1462478645631915</last_used>
+            <last_used_desc>18m 0s ago</last_used_desc>
+            <uptime>29m 26s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251592</rss>
+            <pss>244833</pss>
+            <private_dirty>244720</private_dirty>
+            <swap>0</swap>
+            <real_memory>244720</real_memory>
+            <vmsize>487324</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>11814</pid>
+            <sticky_session_id>2042105554</sticky_session_id>
+            <gupid>173ed68-NkV8cnq8dy</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>4</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477959617747</spawn_start_time>
+            <spawn_end_time>1462477969720557</spawn_end_time>
+            <last_used>1462478645632843</last_used>
+            <last_used_desc>18m 0s ago</last_used_desc>
+            <uptime>29m 16s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>268048</rss>
+            <pss>261380</pss>
+            <private_dirty>261268</private_dirty>
+            <swap>0</swap>
+            <real_memory>261268</real_memory>
+            <vmsize>487268</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>12044</pid>
+            <sticky_session_id>1739921644</sticky_session_id>
+            <gupid>173ed68-zMWbh0xD1H</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>2</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477969725198</spawn_start_time>
+            <spawn_end_time>1462477980186241</spawn_end_time>
+            <last_used>1462478645614383</last_used>
+            <last_used_desc>18m 0s ago</last_used_desc>
+            <uptime>29m 5s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>268080</rss>
+            <pss>261433</pss>
+            <private_dirty>261320</private_dirty>
+            <swap>0</swap>
+            <real_memory>261320</real_memory>
+            <vmsize>487340</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>12258</pid>
+            <sticky_session_id>1317665233</sticky_session_id>
+            <gupid>173ed69-Gv6xRef952</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>2</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477980188990</spawn_start_time>
+            <spawn_end_time>1462477990174734</spawn_end_time>
+            <last_used>1462478645616320</last_used>
+            <last_used_desc>18m 0s ago</last_used_desc>
+            <uptime>28m 55s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251468</rss>
+            <pss>244853</pss>
+            <private_dirty>244740</private_dirty>
+            <swap>0</swap>
+            <real_memory>244740</real_memory>
+            <vmsize>487424</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>12514</pid>
+            <sticky_session_id>957152536</sticky_session_id>
+            <gupid>173ed69-pq0UUshjr1</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462477990179033</spawn_start_time>
+            <spawn_end_time>1462478000166418</spawn_end_time>
+            <last_used>1462478000166418</last_used>
+            <last_used_desc>28m 45s ago</last_used_desc>
+            <uptime>28m 45s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251364</rss>
+            <pss>244765</pss>
+            <private_dirty>244656</private_dirty>
+            <swap>0</swap>
+            <real_memory>244656</real_memory>
+            <vmsize>483144</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>12738</pid>
+            <sticky_session_id>1966887450</sticky_session_id>
+            <gupid>173ed69-D1cOzyXogk</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478000172004</spawn_start_time>
+            <spawn_end_time>1462478010227916</spawn_end_time>
+            <last_used>1462478010227916</last_used>
+            <last_used_desc>28m 35s ago</last_used_desc>
+            <uptime>28m 35s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251444</rss>
+            <pss>244969</pss>
+            <private_dirty>244860</private_dirty>
+            <swap>0</swap>
+            <real_memory>244860</real_memory>
+            <vmsize>483384</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>12940</pid>
+            <sticky_session_id>1149383752</sticky_session_id>
+            <gupid>173ed69-xeWDTVxTZR</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478010232134</spawn_start_time>
+            <spawn_end_time>1462478020210776</spawn_end_time>
+            <last_used>1462478020210776</last_used>
+            <last_used_desc>28m 25s ago</last_used_desc>
+            <uptime>28m 25s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251428</rss>
+            <pss>244861</pss>
+            <private_dirty>244752</private_dirty>
+            <swap>0</swap>
+            <real_memory>244752</real_memory>
+            <vmsize>483268</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>13163</pid>
+            <sticky_session_id>572504052</sticky_session_id>
+            <gupid>173ed69-si2iaIUoyq</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478020214657</spawn_start_time>
+            <spawn_end_time>1462478030076590</spawn_end_time>
+            <last_used>1462478030076590</last_used>
+            <last_used_desc>28m 15s ago</last_used_desc>
+            <uptime>28m 15s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251320</rss>
+            <pss>244817</pss>
+            <private_dirty>244708</private_dirty>
+            <swap>0</swap>
+            <real_memory>244708</real_memory>
+            <vmsize>417600</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>13430</pid>
+            <sticky_session_id>456512467</sticky_session_id>
+            <gupid>173ed69-VanjwZqE6R</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478030079608</spawn_start_time>
+            <spawn_end_time>1462478040746532</spawn_end_time>
+            <last_used>1462478040746532</last_used>
+            <last_used_desc>28m 5s ago</last_used_desc>
+            <uptime>28m 5s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251292</rss>
+            <pss>244793</pss>
+            <private_dirty>244684</private_dirty>
+            <swap>0</swap>
+            <real_memory>244684</real_memory>
+            <vmsize>417584</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>13859</pid>
+            <sticky_session_id>1800443353</sticky_session_id>
+            <gupid>173ed6a-BcabbeMlMe</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478040750349</spawn_start_time>
+            <spawn_end_time>1462478051138239</spawn_end_time>
+            <last_used>1462478051138239</last_used>
+            <last_used_desc>27m 54s ago</last_used_desc>
+            <uptime>27m 54s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>262080</rss>
+            <pss>255537</pss>
+            <private_dirty>255428</private_dirty>
+            <swap>0</swap>
+            <real_memory>255428</real_memory>
+            <vmsize>482612</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>14110</pid>
+            <sticky_session_id>12985506</sticky_session_id>
+            <gupid>173ed6a-u8TIlfVPJC</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478051142417</spawn_start_time>
+            <spawn_end_time>1462478061402699</spawn_end_time>
+            <last_used>1462478061402699</last_used>
+            <last_used_desc>27m 44s ago</last_used_desc>
+            <uptime>27m 44s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>250500</rss>
+            <pss>243853</pss>
+            <private_dirty>243744</private_dirty>
+            <swap>0</swap>
+            <real_memory>243744</real_memory>
+            <vmsize>483272</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>14363</pid>
+            <sticky_session_id>1753288921</sticky_session_id>
+            <gupid>173ed6a-kVXUgBQry1</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478061406353</spawn_start_time>
+            <spawn_end_time>1462478071439058</spawn_end_time>
+            <last_used>1462478071439058</last_used>
+            <last_used_desc>27m 34s ago</last_used_desc>
+            <uptime>27m 34s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>261044</rss>
+            <pss>254541</pss>
+            <private_dirty>254432</private_dirty>
+            <swap>0</swap>
+            <real_memory>254432</real_memory>
+            <vmsize>482588</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>14582</pid>
+            <sticky_session_id>891016091</sticky_session_id>
+            <gupid>173ed6a-zKpBRSQkJK</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478071442974</spawn_start_time>
+            <spawn_end_time>1462478081184367</spawn_end_time>
+            <last_used>1462478081184367</last_used>
+            <last_used_desc>27m 24s ago</last_used_desc>
+            <uptime>27m 24s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>250280</rss>
+            <pss>243701</pss>
+            <private_dirty>243592</private_dirty>
+            <swap>0</swap>
+            <real_memory>243592</real_memory>
+            <vmsize>417504</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>14795</pid>
+            <sticky_session_id>1756833170</sticky_session_id>
+            <gupid>173ed6a-2gXE7FeDSM</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478081188605</spawn_start_time>
+            <spawn_end_time>1462478090749911</spawn_end_time>
+            <last_used>1462478090749911</last_used>
+            <last_used_desc>27m 15s ago</last_used_desc>
+            <uptime>27m 15s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>251380</rss>
+            <pss>244749</pss>
+            <private_dirty>244640</private_dirty>
+            <swap>0</swap>
+            <real_memory>244640</real_memory>
+            <vmsize>483080</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>15016</pid>
+            <sticky_session_id>44295807</sticky_session_id>
+            <gupid>173ed6a-KAwrIKecl2</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478090754068</spawn_start_time>
+            <spawn_end_time>1462478100931419</spawn_end_time>
+            <last_used>1462478100931419</last_used>
+            <last_used_desc>27m 5s ago</last_used_desc>
+            <uptime>27m 5s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>249208</rss>
+            <pss>242685</pss>
+            <private_dirty>242576</private_dirty>
+            <swap>0</swap>
+            <real_memory>242576</real_memory>
+            <vmsize>483056</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+          <process>
+            <pid>15229</pid>
+            <sticky_session_id>313275796</sticky_session_id>
+            <gupid>173ed6b-0ct7K06zz8</gupid>
+            <concurrency>1</concurrency>
+            <sessions>0</sessions>
+            <busyness>0</busyness>
+            <processed>0</processed>
+            <spawner_creation_time>1460126877627875</spawner_creation_time>
+            <spawn_start_time>1462478100935445</spawn_start_time>
+            <spawn_end_time>1462478111138392</spawn_end_time>
+            <last_used>1462478111138392</last_used>
+            <last_used_desc>26m 54s ago</last_used_desc>
+            <uptime>26m 54s</uptime>
+            <code_revision>4fef3ec</code_revision>
+            <life_status>ALIVE</life_status>
+            <enabled>ENABLED</enabled>
+            <has_metrics>true</has_metrics>
+            <cpu>0</cpu>
+            <rss>262096</rss>
+            <pss>255485</pss>
+            <private_dirty>255376</private_dirty>
+            <swap>0</swap>
+            <real_memory>255376</real_memory>
+            <vmsize>482600</vmsize>
+            <process_group_id>2254</process_group_id>
+            <command>Passenger RubyApp: /srv/app/my_app &#40;production&#41;</command>
+          </process>
+        </processes>
+      </group>
+    </supergroup>
+  </supergroups>
+</info>
