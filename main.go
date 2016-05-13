@@ -185,7 +185,7 @@ func (e *Exporter) status() (*Info, error) {
 		return nil, err
 	}
 
-	errc := make(chan error)
+	errc := make(chan error, 1)
 	go func(cmd *exec.Cmd, c chan<- error) {
 		c <- cmd.Wait()
 	}(cmd, errc)
