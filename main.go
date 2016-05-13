@@ -83,13 +83,13 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			nil,
 		),
 		maxProcessCount: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "max_process_count"),
+			prometheus.BuildFQName(namespace, "", "max_processes"),
 			"Configured maximum number of processes.",
 			nil,
 			nil,
 		),
 		currentProcessCount: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "current_process_count"),
+			prometheus.BuildFQName(namespace, "", "current_processes"),
 			"Current number of processes.",
 			nil,
 			nil,
@@ -113,21 +113,21 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			nil,
 		),
 		requestsProcessed: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "requests_processed"),
+			prometheus.BuildFQName(namespace, "", "requests_processed_total"),
 			"Number of processes served by a process.",
-			[]string{"name", "pid"},
+			[]string{"name", "id"},
 			nil,
 		),
 		procUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "proc_uptime"),
 			"Number of seconds since processor started.",
-			[]string{"name", "pid", "codeRevision"},
+			[]string{"name", "id", "codeRevision"},
 			nil,
 		),
 		procMemory: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "proc_memory"),
 			"Memory consumed by a process",
-			[]string{"name", "pid"},
+			[]string{"name", "id"},
 			nil,
 		),
 	}
@@ -146,7 +146,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 	ch <- prometheus.MustNewConstMetric(e.version, prometheus.GaugeValue, 1, info.PassengerVersion)
 
-	ch <- prometheus.MustNewConstMetric(e.toplevelQueue, prometheus.CounterValue, parseFloat(info.TopLevelRequestsInQueue))
+	ch <- prometheus.MustNewConstMetric(e.toplevelQueue, prometheus.GaugeValue, parseFloat(info.TopLevelRequestsInQueue))
 	ch <- prometheus.MustNewConstMetric(e.maxProcessCount, prometheus.GaugeValue, parseFloat(info.MaxProcessCount))
 	ch <- prometheus.MustNewConstMetric(e.currentProcessCount, prometheus.GaugeValue, parseFloat(info.CurrentProcessCount))
 	ch <- prometheus.MustNewConstMetric(e.appCount, prometheus.GaugeValue, parseFloat(info.AppCount))
@@ -163,7 +163,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
 
 				if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
-					ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.CounterValue, float64(uptime),
+					ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.GaugeValue, float64(uptime),
 						sg.Name, strconv.Itoa(bucketID), proc.CodeRevision,
 					)
 				}
