@@ -7,6 +7,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"math"
 	"net/http"
 	"os/exec"
@@ -305,26 +306,28 @@ func main() {
 	var (
 		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
 		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
+		pidFile       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
 	)
 	flag.Parse()
 
-	prometheus.MustRegister(prometheus.NewProcessCollectorPIDFn(
-		func() (int, error) {
-			var (
-				out bytes.Buffer
-				cmd = exec.Command("pidof", `"Passenger core"`)
-			)
-			cmd.Stdout = &out
-
-			if err := cmd.Run(); err != nil {
-				return 0, fmt.Errorf("error running pid command: %s", cmd.Args)
-			}
-			return strconv.Atoi(out.String())
-		},
-		namespace),
-	)
+	if *pidFile != "" {
+		prometheus.MustRegister(prometheus.NewProcessCollectorPIDFn(
+			func() (int, error) {
+				content, err := ioutil.ReadFile(*pidFile)
+				if err != nil {
+					return 0, fmt.Errorf("error reading pidfile %q: %s", *pidFile, err)
+				}
+				value, err := strconv.Atoi(strings.TrimSpace(string(content)))
+				if err != nil {
+					return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
+				}
+				return value, nil
+			},
+			namespace),
+		)
+	}
 
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
 

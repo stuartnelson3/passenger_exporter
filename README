@@ -31,6 +31,8 @@ Usage of passenger_exporter_nginx:
   -passenger.command string
       Passenger command for querying passenger status.
       (default "passenger-status --show=xml")
+  -passenger.pid-file string
+    	Optional path to a file containing the passenger/nginx PID for additional metrics.
   -passenger.command.timeout duration
       Timeout for passenger.command. (default 500ms)
   -web.listen-address string
