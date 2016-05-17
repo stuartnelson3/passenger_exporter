@@ -1,4 +1,4 @@
-VERSION   := 0.0.1
+VERSION   := $(shell cat VERSION)
 BIN       := passenger_exporter_nginx
 CONTAINER := passenger_exporter_nginx
 GOOS      ?= linux
