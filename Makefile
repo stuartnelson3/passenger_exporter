@@ -8,16 +8,18 @@ GOFLAGS   := -ldflags "-X main.Version=$(VERSION)" -a -installsuffix cgo
 TAR       := $(BIN)-$(VERSION)-$(GOOS)-$(GOARCH).tar.gz
 DST       ?= http://ent.int.s-cloud.net/iss/$(BIN)
 
+PREFIX                  ?= $(shell pwd)
+
 default: $(BIN)
+
+$(BIN):
+	CGO_ENABLED=0 promu build --prefix $(PREFIX)
 
 release: $(TAR)
 	curl -XPOST --data-binary @$< $(DST)/$<
 
 build-docker: $(BIN)
 	docker build -t $(CONTAINER) .
-
-$(BIN):
-	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build $(GOFLAGS) -o $(BIN) .
 
 $(TAR): $(BIN)
 	tar czf $@ $<

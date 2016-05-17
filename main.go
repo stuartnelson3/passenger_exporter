@@ -17,6 +17,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
+	"github.com/prometheus/common/version"
 )
 
 const (
@@ -24,8 +25,6 @@ const (
 )
 
 var (
-	Version = "0.0.0"
-
 	timeoutErr = errors.New("passenger-status command timed out")
 
 	processIdentifiers = make(map[string]int)
@@ -333,6 +332,8 @@ func main() {
 
 	http.Handle(*metricsPath, prometheus.Handler())
 
-	log.Infof("starting passenger_exporter_nginx v%s at %s", Version, *listenAddress)
+	log.Infoln("starting passenger_exporter_nginx", version.Info())
+	log.Infoln("build context", version.BuildContext())
+	log.Infoln("listening on", *listenAddress)
 	log.Fatal(http.ListenAndServe(*listenAddress, nil))
 }
