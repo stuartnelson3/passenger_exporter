@@ -13,7 +13,7 @@ PREFIX                  ?= $(shell pwd)
 default: $(BIN)
 
 $(BIN):
-	CGO_ENABLED=0 promu build --prefix $(PREFIX)
+	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) promu build --prefix $(PREFIX)
 
 release: $(TAR)
 	curl -XPOST --data-binary @$< $(DST)/$<
