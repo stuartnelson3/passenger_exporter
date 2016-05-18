@@ -24,6 +24,8 @@ import (
 
 const (
 	namespace = "passenger_nginx"
+
+	nanosecondsPerSecond = 1000000000
 )
 
 var (
@@ -55,7 +57,7 @@ type Exporter struct {
 
 	// Process metrics.
 	requestsProcessed *prometheus.Desc
-	procUptime        *prometheus.Desc
+	procStartTime     *prometheus.Desc
 	procMemory        *prometheus.Desc
 }
 
@@ -120,8 +122,8 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"name", "id"},
 			nil,
 		),
-		procUptime: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "proc_uptime"),
+		procStartTime: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "proc_start_time_seconds"),
 			"Number of seconds since processor started.",
 			[]string{"name", "id", "codeRevision"},
 			nil,
@@ -164,8 +166,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 				ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(bucketID))
 				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
 
-				if uptime, err := parsePassengerInterval(proc.Uptime); err == nil {
-					ch <- prometheus.MustNewConstMetric(e.procUptime, prometheus.GaugeValue, float64(uptime),
+				if startTime, err := strconv.Atoi(proc.SpawnStartTime); err == nil {
+					ch <- prometheus.MustNewConstMetric(e.procStartTime, prometheus.GaugeValue, float64(startTime/nanosecondsPerSecond),
 						sg.Name, strconv.Itoa(bucketID), proc.CodeRevision,
 					)
 				}
@@ -214,7 +216,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.appQueue
 	ch <- e.appProcsSpawning
 	ch <- e.requestsProcessed
-	ch <- e.procUptime
+	ch <- e.procStartTime
 	ch <- e.procMemory
 }
 
@@ -298,11 +300,6 @@ func updateProcesses(old map[string]int, processes []Process) map[string]int {
 	}
 
 	return updated
-}
-
-// parsePassengerInterval formats and parses the default Passenger time output.
-func parsePassengerInterval(val string) (time.Duration, error) {
-	return time.ParseDuration(strings.Replace(val, " ", "", -1))
 }
 
 func main() {

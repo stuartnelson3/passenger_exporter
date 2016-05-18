@@ -3,13 +3,11 @@ package main
 import (
 	"bytes"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"reflect"
-	"strings"
 	"testing"
 	"time"
 
@@ -63,11 +61,6 @@ func TestParsing(t *testing.T) {
 			}
 			for _, proc := range sg.Group.Processes {
 				if want, got := "2254", proc.ProcessGroupID; want != got {
-					t.Fatalf("%s: incorrect process_group_id: wanted %s, got %s", name, want, got)
-				}
-
-				uptime := fmt.Sprintf("%v", testParsePassengerDuration(t, proc.Uptime))
-				if want, got := strings.Replace(proc.Uptime, " ", "", -1), uptime; want != got {
 					t.Fatalf("%s: incorrect process_group_id: wanted %s, got %s", name, want, got)
 				}
 			}
@@ -246,12 +239,4 @@ func TestInsertingNewProcesses(t *testing.T) {
 
 func newTestExporter() *Exporter {
 	return NewExporter("cat ./testdata/passenger_xml_output.xml", time.Second)
-}
-
-func testParsePassengerDuration(t *testing.T, uptime string) time.Duration {
-	parsed, err := parsePassengerInterval(uptime)
-	if err != nil {
-		t.Fatalf("%v", err)
-	}
-	return parsed
 }

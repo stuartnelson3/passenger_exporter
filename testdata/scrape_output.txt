@@ -63,56 +63,6 @@ passenger_nginx_proc_memory{id="6",name="/srv/app/my_app (production)"} 330644
 passenger_nginx_proc_memory{id="7",name="/srv/app/my_app (production)"} 315104
 passenger_nginx_proc_memory{id="8",name="/srv/app/my_app (production)"} 288508
 passenger_nginx_proc_memory{id="9",name="/srv/app/my_app (production)"} 306520
-# HELP passenger_nginx_proc_uptime Number of seconds since processor started.
-# TYPE passenger_nginx_proc_uptime gauge
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="0",name="/srv/app/my_app (production)"} 2.094e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="1",name="/srv/app/my_app (production)"} 2.083e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="10",name="/srv/app/my_app (production)"} 1.992e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="11",name="/srv/app/my_app (production)"} 1.982e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="12",name="/srv/app/my_app (production)"} 1.972e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="13",name="/srv/app/my_app (production)"} 1.962e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="14",name="/srv/app/my_app (production)"} 1.951e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="15",name="/srv/app/my_app (production)"} 1.941e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="16",name="/srv/app/my_app (production)"} 1.931e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="17",name="/srv/app/my_app (production)"} 1.921e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="18",name="/srv/app/my_app (production)"} 1.911e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="19",name="/srv/app/my_app (production)"} 1.9e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="2",name="/srv/app/my_app (production)"} 2.073e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="20",name="/srv/app/my_app (production)"} 1.891e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="21",name="/srv/app/my_app (production)"} 1.88e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="22",name="/srv/app/my_app (production)"} 1.868e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="23",name="/srv/app/my_app (production)"} 1.858e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="24",name="/srv/app/my_app (production)"} 1.848e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="25",name="/srv/app/my_app (production)"} 1.838e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="26",name="/srv/app/my_app (production)"} 1.828e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="27",name="/srv/app/my_app (production)"} 1.818e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="28",name="/srv/app/my_app (production)"} 1.808e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="29",name="/srv/app/my_app (production)"} 1.798e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="3",name="/srv/app/my_app (production)"} 2.063e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="30",name="/srv/app/my_app (production)"} 1.788e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="31",name="/srv/app/my_app (production)"} 1.778e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="32",name="/srv/app/my_app (production)"} 1.766e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="33",name="/srv/app/my_app (production)"} 1.756e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="34",name="/srv/app/my_app (production)"} 1.745e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="35",name="/srv/app/my_app (production)"} 1.735e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="36",name="/srv/app/my_app (production)"} 1.725e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="37",name="/srv/app/my_app (production)"} 1.715e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="38",name="/srv/app/my_app (production)"} 1.705e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="39",name="/srv/app/my_app (production)"} 1.695e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="4",name="/srv/app/my_app (production)"} 2.053e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="40",name="/srv/app/my_app (production)"} 1.685e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="41",name="/srv/app/my_app (production)"} 1.674e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="42",name="/srv/app/my_app (production)"} 1.664e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="43",name="/srv/app/my_app (production)"} 1.654e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="44",name="/srv/app/my_app (production)"} 1.644e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="45",name="/srv/app/my_app (production)"} 1.635e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="46",name="/srv/app/my_app (production)"} 1.625e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="47",name="/srv/app/my_app (production)"} 1.614e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="5",name="/srv/app/my_app (production)"} 2.042e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="6",name="/srv/app/my_app (production)"} 2.032e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="7",name="/srv/app/my_app (production)"} 2.022e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="8",name="/srv/app/my_app (production)"} 2.012e+12
-passenger_nginx_proc_uptime{codeRevision="4fef3ec",id="9",name="/srv/app/my_app (production)"} 2.002e+12
 # HELP passenger_nginx_requests_processed_total Number of processes served by a process.
 # TYPE passenger_nginx_requests_processed_total counter
 passenger_nginx_requests_processed_total{id="0",name="/srv/app/my_app (production)"} 43578
