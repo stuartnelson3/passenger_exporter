@@ -15,6 +15,8 @@ import (
 	"strings"
 	"time"
 
+	"golang.org/x/net/html/charset"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
@@ -218,7 +220,9 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 
 func parseOutput(r io.Reader) (*Info, error) {
 	var info Info
-	err := xml.NewDecoder(r).Decode(&info)
+	decoder := xml.NewDecoder(r)
+	decoder.CharsetReader = charset.NewReaderLabel
+	err := decoder.Decode(&info)
 	if err != nil {
 		return nil, err
 	}
