@@ -8,7 +8,7 @@ GOFLAGS   := -ldflags "-X main.Version=$(VERSION)" -a -installsuffix cgo
 TAR       := $(BIN)-$(VERSION)-$(GOOS)-$(GOARCH).tar.gz
 DST       ?= http://ent.int.s-cloud.net/iss/$(BIN)
 
-PREFIX                  ?= $(shell pwd)
+PREFIX    ?= $(shell pwd)
 
 default: $(BIN)
 
