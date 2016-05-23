@@ -36,7 +36,7 @@ Usage of passenger_exporter_nginx:
   -passenger.command.timeout duration
       Timeout for passenger.command. (default 500ms)
   -web.listen-address string
-      Address to listen on for web interface and telemetry. (default ":9106")
+      Address to listen on for web interface and telemetry. (default ":9149")
   -web.telemetry-path string
       Path under which to expose metrics. (default "/metrics")
 

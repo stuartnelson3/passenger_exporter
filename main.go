@@ -308,7 +308,7 @@ func main() {
 		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
 		pidFile       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
-		listenAddress = flag.String("web.listen-address", ":9106", "Address to listen on for web interface and telemetry.")
+		listenAddress = flag.String("web.listen-address", ":9149", "Address to listen on for web interface and telemetry.")
 	)
 	flag.Parse()
 
