@@ -4,7 +4,7 @@ passenger_exporter_nginx
 
 This is a Prometheus exporter for passenger with nginx integration.
 
-Status is still a work in progress.
+https://www.phusionpassenger.com/
 
 *********************
 Building the Exporter
