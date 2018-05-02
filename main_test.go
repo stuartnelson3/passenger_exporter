@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -51,9 +52,20 @@ func TestParsing(t *testing.T) {
 		if len(info.SuperGroups) == 0 {
 			t.Fatalf("%v: no supergroups in output", name)
 		}
+
+		topLevelQueue := parseFloat(info.TopLevelRequestsInQueue)
+		if topLevelQueue == 0 {
+			t.Fatalf("%v: no queuing requests parsed from output", name)
+		}
+
 		for _, sg := range info.SuperGroups {
 			if want, got := "/src/app/my_app", sg.Group.Options.AppRoot; want != got {
 				t.Fatalf("%s: incorrect app_root: wanted %s, got %s", name, want, got)
+			}
+
+			queue := parseFloat(sg.RequestsInQueue)
+			if queue == math.NaN() {
+				t.Fatalf("%v: failed to parse requests in queue", name)
 			}
 
 			if len(sg.Group.Processes) == 0 {

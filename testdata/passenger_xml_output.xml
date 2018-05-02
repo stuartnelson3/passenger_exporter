@@ -5,12 +5,12 @@
   <process_count>48</process_count>
   <max>48</max>
   <capacity_used>48</capacity_used>
-  <get_wait_list_size>0</get_wait_list_size>
+  <get_wait_list_size>3</get_wait_list_size>
   <supergroups>
     <supergroup>
       <name>/srv/app/my_app &#40;production&#41;</name>
       <state>READY</state>
-      <get_wait_list_size>0</get_wait_list_size>
+      <get_wait_list_size>5</get_wait_list_size>
       <capacity_used>48</capacity_used>
       <group default="true">
         <name>/srv/app/my_app &#40;production&#41;</name>
