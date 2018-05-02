@@ -6,7 +6,7 @@ passenger_nginx_app_count 1
 passenger_nginx_app_procs_spawning{name="/srv/app/my_app (production)"} 0
 # HELP passenger_nginx_app_queue Number of requests in app process queues.
 # TYPE passenger_nginx_app_queue gauge
-passenger_nginx_app_queue{name="/srv/app/my_app (production)"} 0
+passenger_nginx_app_queue{name="/srv/app/my_app (production)"} 5
 # HELP passenger_nginx_current_processes Current number of processes.
 # TYPE passenger_nginx_current_processes gauge
 passenger_nginx_current_processes 48
@@ -63,6 +63,56 @@ passenger_nginx_proc_memory{id="6",name="/srv/app/my_app (production)"} 330644
 passenger_nginx_proc_memory{id="7",name="/srv/app/my_app (production)"} 315104
 passenger_nginx_proc_memory{id="8",name="/srv/app/my_app (production)"} 288508
 passenger_nginx_proc_memory{id="9",name="/srv/app/my_app (production)"} 306520
+# HELP passenger_nginx_proc_start_time_seconds Number of seconds since processor started.
+# TYPE passenger_nginx_proc_start_time_seconds gauge
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="0",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="1",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="10",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="11",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="12",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="13",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="14",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="15",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="16",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="17",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="18",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="19",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="2",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="20",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="21",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="22",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="23",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="24",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="25",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="26",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="27",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="28",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="29",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="3",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="30",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="31",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="32",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="33",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="34",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="35",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="36",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="37",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="38",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="39",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="4",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="40",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="41",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="42",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="43",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="44",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="45",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="46",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="47",name="/srv/app/my_app (production)"} 1.462478e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="5",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="6",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="7",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="8",name="/srv/app/my_app (production)"} 1.462477e+06
+passenger_nginx_proc_start_time_seconds{codeRevision="4fef3ec",id="9",name="/srv/app/my_app (production)"} 1.462477e+06
 # HELP passenger_nginx_requests_processed_total Number of processes served by a process.
 # TYPE passenger_nginx_requests_processed_total counter
 passenger_nginx_requests_processed_total{id="0",name="/srv/app/my_app (production)"} 43578
@@ -115,10 +165,28 @@ passenger_nginx_requests_processed_total{id="8",name="/srv/app/my_app (productio
 passenger_nginx_requests_processed_total{id="9",name="/srv/app/my_app (production)"} 30490
 # HELP passenger_nginx_top_level_queue Number of requests in the top-level queue.
 # TYPE passenger_nginx_top_level_queue gauge
-passenger_nginx_top_level_queue 0
+passenger_nginx_top_level_queue 3
 # HELP passenger_nginx_up Could passenger status be queried.
 # TYPE passenger_nginx_up gauge
 passenger_nginx_up 1
 # HELP passenger_nginx_version Version of passenger
 # TYPE passenger_nginx_version gauge
 passenger_nginx_version{version="5.0.26"} 1
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1024
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 14
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 7.675904e+06
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.52527825818e+09
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 4.04672512e+08
