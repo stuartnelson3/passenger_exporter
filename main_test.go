@@ -1,18 +1,12 @@
 package main
 
 import (
-	"bytes"
 	"flag"
-	"io/ioutil"
 	"math"
-	"net/http"
-	"net/http/httptest"
 	"os"
 	"reflect"
 	"testing"
 	"time"
-
-	"github.com/prometheus/client_golang/prometheus"
 )
 
 var golden bool
@@ -77,39 +71,6 @@ func TestParsing(t *testing.T) {
 				}
 			}
 		}
-	}
-}
-
-func TestScrape(t *testing.T) {
-	prometheus.MustRegister(newTestExporter())
-	server := httptest.NewServer(prometheus.Handler())
-	defer server.Close()
-
-	res, err := http.Get(server.URL)
-	if err != nil {
-		t.Fatalf("failed to GET test server: %v", err)
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		t.Fatalf("failed to read response body: %v", err)
-	}
-
-	scrapeFixturePath := "./testdata/scrape_output.txt"
-	if golden {
-		idx := bytes.Index(body, []byte("# HELP passenger_nginx_app_count Number of apps."))
-		ioutil.WriteFile(scrapeFixturePath, body[idx:], 0666)
-		t.Skipf("--golden passed: re-writing %s", scrapeFixturePath)
-	}
-
-	fixture, err := ioutil.ReadFile(scrapeFixturePath)
-	if err != nil {
-		t.Fatalf("failed to read scrape fixture: %v", err)
-	}
-
-	if !bytes.Contains(body, fixture) {
-		t.Fatalf("fixture data not contained within response body")
 	}
 }
 
