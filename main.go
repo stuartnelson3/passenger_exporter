@@ -53,6 +53,7 @@ type Exporter struct {
 
 	// App metrics.
 	appQueue         *prometheus.Desc
+	appGroupQueue    *prometheus.Desc
 	appProcsSpawning *prometheus.Desc
 
 	// Process metrics.
@@ -110,6 +111,12 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"name"},
 			nil,
 		),
+		appGroupQueue: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "app_group_queue"),
+			"Number of requests in app group process queues.",
+			[]string{"default"},
+			nil,
+		),
 		appProcsSpawning: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "app_procs_spawning"),
 			"Number of processes spawning.",
@@ -158,6 +165,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	for _, sg := range info.SuperGroups {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
 		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
+
+		ch <- prometheus.MustNewConstMetric(e.appGroupQueue, prometheus.GaugeValue, parseFloat(sg.Group.GetWaitListSize), sg.Group.Default)
 
 		// Update process identifiers map.
 		processIdentifiers = updateProcesses(processIdentifiers, sg.Group.Processes)
@@ -214,6 +223,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.currentProcessCount
 	ch <- e.appCount
 	ch <- e.appQueue
+	ch <- e.appGroupQueue
 	ch <- e.appProcsSpawning
 	ch <- e.requestsProcessed
 	ch <- e.procStartTime
