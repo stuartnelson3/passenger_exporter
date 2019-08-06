@@ -60,6 +60,7 @@ type Exporter struct {
 	requestsProcessed *prometheus.Desc
 	procStartTime     *prometheus.Desc
 	procMemory        *prometheus.Desc
+	procCpu           *prometheus.Desc
 }
 
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
@@ -141,6 +142,12 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"name", "id"},
 			nil,
 		),
+		procCpu: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "proc_cpu"),
+			"CPU percentage consumed by a process",
+			[]string{"name", "id"},
+			nil,
+		),
 	}
 }
 
@@ -173,6 +180,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		for _, proc := range sg.Group.Processes {
 			if bucketID, ok := processIdentifiers[proc.PID]; ok {
 				ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(bucketID))
+				ch <- prometheus.MustNewConstMetric(e.procCpu, prometheus.GaugeValue, parseFloat(proc.CPU), sg.Name, strconv.Itoa(bucketID))
 				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
 
 				if startTime, err := strconv.Atoi(proc.SpawnStartTime); err == nil {
@@ -228,6 +236,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.requestsProcessed
 	ch <- e.procStartTime
 	ch <- e.procMemory
+	ch <- e.procCpu
 }
 
 func parseOutput(r io.Reader) (*Info, error) {
