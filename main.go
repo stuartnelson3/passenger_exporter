@@ -114,7 +114,7 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 		appGroupQueue: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "app_group_queue"),
 			"Number of requests in app group process queues.",
-			[]string{"default"},
+			[]string{"group", "default"},
 			nil,
 		),
 		appProcsSpawning: prometheus.NewDesc(
@@ -166,7 +166,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
 		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
 
-		ch <- prometheus.MustNewConstMetric(e.appGroupQueue, prometheus.GaugeValue, parseFloat(sg.Group.GetWaitListSize), sg.Group.Default)
+		ch <- prometheus.MustNewConstMetric(e.appGroupQueue, prometheus.GaugeValue, parseFloat(sg.Group.GetWaitListSize), sg.Group.Name, sg.Group.Default)
 
 		// Update process identifiers map.
 		processIdentifiers = updateProcesses(processIdentifiers, sg.Group.Processes)
