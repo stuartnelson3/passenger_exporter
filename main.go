@@ -58,7 +58,7 @@ type Exporter struct {
 
 	// Process metrics.
 	requestsProcessed *prometheus.Desc
-	sessions		  *prometheus.Desc
+	sessions          *prometheus.Desc
 	procStartTime     *prometheus.Desc
 	procMemory        *prometheus.Desc
 }
