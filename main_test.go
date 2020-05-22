@@ -9,13 +9,6 @@ import (
 	"time"
 )
 
-var golden bool
-
-func init() {
-	flag.BoolVar(&golden, "golden", false, "Write test results to fixture files.")
-	flag.Parse()
-}
-
 func TestParsing(t *testing.T) {
 	tests := map[string]func(t *testing.T) *Info{
 		"newExporter": func(t *testing.T) *Info {
