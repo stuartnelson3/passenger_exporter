@@ -58,6 +58,7 @@ type Exporter struct {
 
 	// Process metrics.
 	requestsProcessed *prometheus.Desc
+	sessions          *prometheus.Desc
 	procStartTime     *prometheus.Desc
 	procMemory        *prometheus.Desc
 }
@@ -129,6 +130,12 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"name", "id"},
 			nil,
 		),
+		sessions: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "current_sessions"),
+			"Number of sessions currently being handled by a process.",
+			[]string{"name", "id"},
+			nil,
+		),
 		procStartTime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "proc_start_time_seconds"),
 			"Number of seconds since processor started.",
@@ -174,6 +181,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 			if bucketID, ok := processIdentifiers[proc.PID]; ok {
 				ch <- prometheus.MustNewConstMetric(e.procMemory, prometheus.GaugeValue, parseFloat(proc.RealMemory), sg.Name, strconv.Itoa(bucketID))
 				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
+				ch <- prometheus.MustNewConstMetric(e.sessions, prometheus.GaugeValue, parseFloat(proc.Sessions), sg.Name, strconv.Itoa(bucketID))
 
 				if startTime, err := strconv.Atoi(proc.SpawnStartTime); err == nil {
 					ch <- prometheus.MustNewConstMetric(e.procStartTime, prometheus.GaugeValue, float64(startTime/nanosecondsPerSecond),
@@ -226,6 +234,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.appGroupQueue
 	ch <- e.appProcsSpawning
 	ch <- e.requestsProcessed
+	ch <- e.sessions
 	ch <- e.procStartTime
 	ch <- e.procMemory
 }
