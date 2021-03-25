@@ -1,4 +1,4 @@
-module github.com/stuartnelson3/passenger_exporter
+module github.com/phenom5886/passenger_exporter
 
 go 1.12
 

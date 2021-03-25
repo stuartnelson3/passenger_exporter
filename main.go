@@ -16,8 +16,8 @@ import (
 	"time"
 
 	"golang.org/x/net/html/charset"
-
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
 )
@@ -108,6 +108,7 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 		),
 		appQueue: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "app_queue"),
+			"Number of requests in app process queues.",
 			"Number of requests in app process queues.",
 			[]string{"name"},
 			nil,
@@ -325,32 +326,14 @@ func main() {
 	var (
 		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
 		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
-		pidFile       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9149", "Address to listen on for web interface and telemetry.")
 	)
 	flag.Parse()
 
-	if *pidFile != "" {
-		prometheus.MustRegister(prometheus.NewProcessCollectorPIDFn(
-			func() (int, error) {
-				content, err := ioutil.ReadFile(*pidFile)
-				if err != nil {
-					return 0, fmt.Errorf("error reading pidfile %q: %s", *pidFile, err)
-				}
-				value, err := strconv.Atoi(strings.TrimSpace(string(content)))
-				if err != nil {
-					return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
-				}
-				return value, nil
-			},
-			namespace),
-		)
-	}
-
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
 
-	http.Handle(*metricsPath, prometheus.Handler())
+	http.Handle(*metricsPath, promhttp.Handler())
 
 	log.Infoln("starting passenger_exporter_nginx", version.Info())
 	log.Infoln("build context", version.BuildContext())
