@@ -16,7 +16,6 @@ import (
 	"time"
 
 	"golang.org/x/net/html/charset"
-    "github.com/prometheus/procfs"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
@@ -344,10 +343,10 @@ func main() {
                        return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
                    }
                    return value, nil
-                },
-			    Namespace: namespace,
-			})
-		    prometheus.MustRegister(procExporter)
+            },
+			Namespace: namespace,
+		})
+		prometheus.MustRegister(procExporter)
 	}
 
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
