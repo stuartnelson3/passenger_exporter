@@ -63,25 +63,6 @@ type Exporter struct {
 	procMemory        *prometheus.Desc
 }
 
-type ProcessCollectorOpts struct {
-	// PidFn returns the PID of the process the collector collects metrics
-	// for. It is called upon each collection. By default, the PID of the
-	// current process is used, as determined on construction time by
-	// calling os.Getpid().
-	PidFn func() (int, error)
-	// If non-empty, each of the collected metrics is prefixed by the
-	// provided string and an underscore ("_").
-	Namespace string
-	// If true, any error encountered during collection is reported as an
-	// invalid metric (see NewInvalidMetric). Otherwise, errors are ignored
-	// and the collected metrics will be incomplete. (Possibly, no metrics
-	// will be collected at all.) While that's usually not desired, it is
-	// appropriate for the common "mix-in" of process metrics, where process
-	// metrics are nice to have, but failing to collect them should not
-	// disrupt the collection of the remaining metrics.
-	ReportErrors bool
-}
-
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
 	cmdComponents := strings.Split(cmd, " ")
 
@@ -127,6 +108,7 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 		),
 		appQueue: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "app_queue"),
+			"Number of requests in app process queues.",
 			"Number of requests in app process queues.",
 			[]string{"name"},
 			nil,
@@ -344,30 +326,10 @@ func main() {
 	var (
 		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
 		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
-		pidFile       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		listenAddress = flag.String("web.listen-address", ":9149", "Address to listen on for web interface and telemetry.")
 	)
 	flag.Parse()
-
-	if *pidFile != "" {
-		procExporter := prometheus.NewProcessCollector(ProcessCollectorOpts{
-			PidFn: func() (int, error) {
-                   content, err := ioutil.ReadFile(*pidFile)
-                   if err != nil {
-                       return 0, fmt.Errorf("error reading pidfile %q: %s", *pidFile, err)
-                   }
-                   value, err := strconv.Atoi(strings.TrimSpace(string(content)))
-                   if err != nil {
-                       return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
-                   }
-                   return value, nil
-            },
-			Namespace: namespace,
-			ReportErrors: true,
-		})
-		prometheus.MustRegister(procExporter)
-	}
 
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
 
