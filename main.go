@@ -333,21 +333,21 @@ func main() {
 	flag.Parse()
 
 	if *pidFile != "" {
-		prometheus.MustRegister(prometheus.NewProcessCollector(prometheus.ProcessCollectorOpts{
-			PidFn:  func() (int, error) {
-                    content, err := ioutil.ReadFile(*pidFile)
-                    if err != nil {
-                        return 0, fmt.Errorf("error reading pidfile %q: %s", *pidFile, err)
-                    }
-                    value, err := strconv.Atoi(strings.TrimSpace(string(content)))
-                    if err != nil {
-                        return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
-                    }
-                    return value, nil
+		procExporter := prometheus.NewProcessCollector(prometheus.ProcessCollectorOpts{
+			PidFn: func() (int, error) {
+                   content, err := ioutil.ReadFile(*pidFile)
+                   if err != nil {
+                       return 0, fmt.Errorf("error reading pidfile %q: %s", *pidFile, err)
+                   }
+                   value, err := strconv.Atoi(strings.TrimSpace(string(content)))
+                   if err != nil {
+                       return 0, fmt.Errorf("error parsing pidfile %q: %s", *pidFile, err)
+                   }
+                   return value, nil
                 },
-			Namespace: namespace,
-			}),
-		)
+			    Namespace: namespace,
+			})
+		    prometheus.MustRegister(procExporter)
 	}
 
 	prometheus.MustRegister(NewExporter(*cmd, *timeout))
