@@ -346,7 +346,7 @@ func main() {
                     return value, nil
                 },
 			Namespace: namespace,
-			})
+			}),
 		)
 	}
 
