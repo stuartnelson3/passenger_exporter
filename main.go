@@ -16,7 +16,7 @@ import (
 	"time"
 
 	"golang.org/x/net/html/charset"
-
+    "github.com/prometheus/procfs"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
