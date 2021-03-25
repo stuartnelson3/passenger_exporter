@@ -345,6 +345,7 @@ func main() {
                    return value, nil
             },
 			Namespace: namespace,
+			ReportErrors: true,
 		})
 		prometheus.MustRegister(procExporter)
 	}
