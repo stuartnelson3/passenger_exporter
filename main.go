@@ -63,6 +63,25 @@ type Exporter struct {
 	procMemory        *prometheus.Desc
 }
 
+type ProcessCollectorOpts struct {
+	// PidFn returns the PID of the process the collector collects metrics
+	// for. It is called upon each collection. By default, the PID of the
+	// current process is used, as determined on construction time by
+	// calling os.Getpid().
+	PidFn func() (int, error)
+	// If non-empty, each of the collected metrics is prefixed by the
+	// provided string and an underscore ("_").
+	Namespace string
+	// If true, any error encountered during collection is reported as an
+	// invalid metric (see NewInvalidMetric). Otherwise, errors are ignored
+	// and the collected metrics will be incomplete. (Possibly, no metrics
+	// will be collected at all.) While that's usually not desired, it is
+	// appropriate for the common "mix-in" of process metrics, where process
+	// metrics are nice to have, but failing to collect them should not
+	// disrupt the collection of the remaining metrics.
+	ReportErrors bool
+}
+
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
 	cmdComponents := strings.Split(cmd, " ")
 
@@ -332,7 +351,7 @@ func main() {
 	flag.Parse()
 
 	if *pidFile != "" {
-		procExporter := prometheus.NewProcessCollector(prometheus.ProcessCollectorOpts{
+		procExporter := prometheus.NewProcessCollector(ProcessCollectorOpts{
 			PidFn: func() (int, error) {
                    content, err := ioutil.ReadFile(*pidFile)
                    if err != nil {
