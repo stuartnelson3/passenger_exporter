@@ -13,7 +13,7 @@ jobs:
       with:
         registry: us-central1-docker.pkg.dev
         username: _json_key
-        password: ${{ steps.secrets_manager.outputs.GCR_ACCOUNT_KEY }}
+        password: ${{ secrets.GCR_ACCOUNT_KEY }}
     - id: settings
       run: |
         echo "date=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
