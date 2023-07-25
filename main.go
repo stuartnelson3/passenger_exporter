@@ -55,12 +55,14 @@ type Exporter struct {
 	appQueue         *prometheus.Desc
 	appGroupQueue    *prometheus.Desc
 	appProcsSpawning *prometheus.Desc
+	appCapacityUsed  *prometheus.Desc
 
 	// Process metrics.
 	requestsProcessed *prometheus.Desc
 	sessions          *prometheus.Desc
 	procStartTime     *prometheus.Desc
 	procMemory        *prometheus.Desc
+	procDetached      *prometheus.Desc
 }
 
 func NewExporter(cmd string, timeout time.Duration) *Exporter {
@@ -118,6 +120,12 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"group", "default"},
 			nil,
 		),
+		appCapacityUsed: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "app_capacity_used"),
+			"Number of processes from overall capacity.",
+			[]string{"name"},
+			nil,
+		),
 		appProcsSpawning: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "app_procs_spawning"),
 			"Number of processes spawning.",
@@ -148,6 +156,12 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 			[]string{"name", "id"},
 			nil,
 		),
+		procDetached: prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", "proc_detached"),
+			"Number of detached processes",
+			[]string{"name"},
+			nil,
+		),
 	}
 }
 
@@ -172,8 +186,11 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	for _, sg := range info.SuperGroups {
 		ch <- prometheus.MustNewConstMetric(e.appQueue, prometheus.GaugeValue, parseFloat(sg.RequestsInQueue), sg.Name)
 		ch <- prometheus.MustNewConstMetric(e.appProcsSpawning, prometheus.GaugeValue, parseFloat(sg.Group.ProcessesSpawning), sg.Name)
+		ch <- prometheus.MustNewConstMetric(e.appCapacityUsed, prometheus.GaugeValue, parseFloat(sg.CapacityUsed), sg.Name)
 
 		ch <- prometheus.MustNewConstMetric(e.appGroupQueue, prometheus.GaugeValue, parseFloat(sg.Group.GetWaitListSize), sg.Group.Name, sg.Group.Default)
+
+		detachedProcesses := 0
 
 		// Update process identifiers map.
 		processIdentifiers = updateProcesses(processIdentifiers, sg.Group.Processes)
@@ -183,6 +200,10 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 				ch <- prometheus.MustNewConstMetric(e.requestsProcessed, prometheus.CounterValue, parseFloat(proc.RequestsProcessed), sg.Name, strconv.Itoa(bucketID))
 				ch <- prometheus.MustNewConstMetric(e.sessions, prometheus.GaugeValue, parseFloat(proc.Sessions), sg.Name, strconv.Itoa(bucketID))
 
+				if proc.LifeStatus == "ALIVE" && proc.Enabled == "DETACHED" {
+					detachedProcesses += 1
+				}
+
 				if startTime, err := strconv.Atoi(proc.SpawnStartTime); err == nil {
 					ch <- prometheus.MustNewConstMetric(e.procStartTime, prometheus.GaugeValue, float64(startTime/nanosecondsPerSecond),
 						sg.Name, strconv.Itoa(bucketID), proc.CodeRevision,
@@ -190,6 +211,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 				}
 			}
 		}
+
+		ch <- prometheus.MustNewConstMetric(e.procDetached, prometheus.GaugeValue, float64(detachedProcesses), sg.Name)
 	}
 
 }
@@ -232,11 +255,13 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.appCount
 	ch <- e.appQueue
 	ch <- e.appGroupQueue
+	ch <- e.appCapacityUsed
 	ch <- e.appProcsSpawning
 	ch <- e.requestsProcessed
 	ch <- e.sessions
 	ch <- e.procStartTime
 	ch <- e.procMemory
+	ch <- e.procDetached
 }
 
 func parseOutput(r io.Reader) (*Info, error) {
