@@ -1,0 +1,32 @@
+name: build-and-push
+on:
+  push:
+    tags:
+    - 'v[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to artifact registry
+      uses: docker/login-action@v2
+      with:
+        registry: us-central1-docker.pkg.dev
+        username: _json_key
+        password: ${{ steps.secrets_manager.outputs.GCR_ACCOUNT_KEY }}
+    - id: settings
+      run: |
+        echo "date=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: |
+          us-central1-docker.pkg.dev/toptal-hub/containers/passenger_exporter:latest
+          us-central1-docker.pkg.dev/toptal-hub/containers/passenger_exporter:${{ github.ref_name }}
+          us-central1-docker.pkg.dev/toptal-hub/containers/passenger_exporter:${{ github.sha }}
+        build_args: |
+          VERSION=${{ github.ref_name }}
+          COMMIT=${{ github.sha }}
+          DATE=${{ steps.settings.outputs.date }}
+          BUILT_BY=${{ github.actor }}
