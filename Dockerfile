@@ -11,7 +11,10 @@ RUN go mod download
 RUN go get github.com/toptal/passenger_exporter
 RUN go  build -ldflags="-X main.version=${VERSION} -X main.commit=${COMMIT} -X main.date=${DATE} -X main.builtBy=${BUILT_BY}"
 
-FROM phusion/passenger-customizable:2.5.1 as final
+FROM ruby:3.2-alpine as final
+
+RUN apk --no-cache add curl make libc6-compat
+RUN gem install passenger
 
 RUN mkdir /app
 WORKDIR /app
