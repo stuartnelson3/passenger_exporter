@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"math"
 	"os"
 	"reflect"
@@ -13,7 +12,7 @@ func TestParsing(t *testing.T) {
 	tests := map[string]func(t *testing.T) *Info{
 		"newExporter": func(t *testing.T) *Info {
 			e := newTestExporter()
-			info, err := e.status()
+			info, err := e.Status()
 			if err != nil {
 				t.Fatalf("failed to get status: %v", err)
 			}
@@ -69,7 +68,7 @@ func TestParsing(t *testing.T) {
 
 func TestStatusTimeout(t *testing.T) {
 	e := NewExporter("sleep 1", time.Millisecond)
-	_, err := e.status()
+	_, err := e.Status()
 	if err == nil {
 		t.Fatalf("failed to timeout")
 	}

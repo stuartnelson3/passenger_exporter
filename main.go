@@ -168,7 +168,7 @@ func NewExporter(cmd string, timeout time.Duration) *Exporter {
 // Collect fetches the statistics from the configured passenger frontend, and
 // delivers them as Prometheus metrics. It implements prometheus.Collector.
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-	info, err := e.status()
+	info, err := e.Status()
 	if err != nil {
 		ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 0)
 		log.Errorf("failed to collect status from passenger: %s", err)
@@ -217,7 +217,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 }
 
-func (e *Exporter) status() (*Info, error) {
+func (e *Exporter) Status() (*Info, error) {
 	var (
 		out bytes.Buffer
 		cmd = exec.Command(e.cmd, e.args...)
@@ -284,6 +284,14 @@ func parseFloat(val string) float64 {
 	return v
 }
 
+func parseInt(val string) (int64, error) {
+	v, err := strconv.ParseInt(val, 10, 64)
+	if err != nil {
+		return 0, err
+	}
+	return v, nil
+}
+
 // updateProcesses updates the global map from process id:exporter id. Process
 // TTLs cause new processes to be created on a user-defined cycle. When a new
 // process replaces an old process, the new process's statistics will be
@@ -346,13 +354,19 @@ func updateProcesses(old map[string]int, processes []Process) map[string]int {
 	return updated
 }
 
+func pingHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("pong"))
+}
+
 func main() {
 	var (
-		cmd           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
-		timeout       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
-		pidFile       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
-		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
-		listenAddress = flag.String("web.listen-address", ":9149", "Address to listen on for web interface and telemetry.")
+		cmd                           = flag.String("passenger.command", "passenger-status --show=xml", "Passenger command for querying passenger status.")
+		timeout                       = flag.Duration("passenger.command.timeout", 500*time.Millisecond, "Timeout for passenger.command.")
+		pidFile                       = flag.String("passenger.pid-file", "", "Optional path to a file containing the passenger/nginx PID for additional metrics.")
+		metricsPath                   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
+		listenAddress                 = flag.String("web.listen-address", ":9149", "Address to listen on for web interface and telemetry.")
+		passengerMinWorkers           = flag.Int64("passenger.min_workers", 0, "Minimum number of workers to wait before exporter starts")
+		passengerMinWorkersPullPeriod = flag.Duration("passenger.min_workers_pull_period", 2000*time.Millisecond, "Number of ms to wait between pulling passenger-status to get number of workers")
 	)
 	flag.Parse()
 
@@ -373,7 +387,31 @@ func main() {
 		)
 	}
 
-	prometheus.MustRegister(NewExporter(*cmd, *timeout))
+	exporter := NewExporter(*cmd, *timeout)
+
+	if *passengerMinWorkers > 0 {
+		var currentProcessCount = int64(0)
+		for currentProcessCount < *passengerMinWorkers {
+			info, err := exporter.Status()
+
+			if err == nil {
+				currentProcessCount, err = parseInt(info.CurrentProcessCount)
+				if err != nil {
+					currentProcessCount = 0
+					log.Errorln("Cannot parse CurrentProcessCount", info.CurrentProcessCount, err)
+				}
+			} else {
+				log.Errorln("Cannot get status from passenger", err)
+			}
+
+			log.Infoln("Current passenger process count", currentProcessCount)
+			time.Sleep(*passengerMinWorkersPullPeriod)
+		}
+	}
+
+	prometheus.MustRegister(exporter)
+
+	http.HandleFunc("/ping", pingHandler)
 
 	http.Handle(*metricsPath, prometheus.Handler())
 
